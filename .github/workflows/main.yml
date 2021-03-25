@@ -40,7 +40,7 @@ jobs:
 
       # 用SCP将文件传到远端服务器
       - name: SCP Files to aliyun
-        uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/scp-action@v0.1.1
         with:
           host: ${{ secrets.ALIYUN_HK187_HOST }}
           username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
