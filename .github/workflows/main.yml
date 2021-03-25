@@ -31,7 +31,7 @@ jobs:
       - name: RSyncer Action
         uses: Pendect/action-rsyncer@v1.1.0
         env:
-          DEPLOY_KEY: ${{ secrets.WORKFLOW_ACTION_TOKEN }}
+          DEPLOY_KEY: ${{ secrets.ALIYUN_HK187_WEBSITE_KEY }}
         with:
           flags: '-avzr --delete'
           src: './public/'
