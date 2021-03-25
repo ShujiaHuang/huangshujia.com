@@ -1,0 +1,7 @@
+
+public/
+
+*.sh
+*.swp
+.DS_Store
+
