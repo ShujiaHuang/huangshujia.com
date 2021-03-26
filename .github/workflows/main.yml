@@ -55,7 +55,7 @@ jobs:
           host: ${{ secrets.ALIYUN_HK187_HOST }}
           username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
           password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
-          # target: ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}
+          script: sh ~/deploy_website/bin/deploy_huangshujia_com.sh
       
       # Runs a single command using the runners shell
       - name: Run a one-line script
