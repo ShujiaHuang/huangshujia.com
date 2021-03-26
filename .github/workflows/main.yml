@@ -57,7 +57,7 @@ jobs:
           target: ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}
 
       # 使用 SSH 链接远程服务器，将同步上去的文件移动到网站真正的部署目录
-      - name: SSH Remote login and deploy website
+      - name: SSH Remote login and deploy
         uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.ALIYUN_HK187_HOST }}
