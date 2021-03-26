@@ -26,53 +26,71 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check Out
         uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 1
+
+      - name: Hugo Build
+        uses: jakejarvis/hugo-build-action@v0.82.0
+        with:
+          args: --minify
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: site
+          path: public
+
       
-      # 使用 SSH 链接远程服务器，创建临时部署目录，该目录与 ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }} 相同
-      - name: SSH Remote login and create temporary directory
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.ALIYUN_HK187_HOST }}
-          username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
-          password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
-          script: sh ~/deploy_website/bin/creat_huangshujia_com_tmpdir.sh
+      deploy:
+        needs: build
+        runs-on: ubuntu-latest
 
-      # 使用 Rsync 同步文件，一直提示Permission Denity 烦死了
-      # - name: RSyncer Action
-      #  uses: Pendect/action-rsyncer@v1.1.0
-      #  env:
-      #    DEPLOY_KEY: ${{ secrets.ALIYUN_HK187_WEBSITE_KEY }}
-      #  with:
-      #    flags: '-avzr --delete'
-      #    src: './public/'
-      #    dest: '${{ secrets.ALIYUN_HK187_WEBSITE_USER }}@${{ secrets.ALIYUN_HK187_HOST }}:${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}'
+        steps:
 
-      # 使用 SCP 将文件传到远端服务器
-      - name: SCP Files to aliyun
-        uses: appleboy/scp-action@v0.1.1
-        with:
-          host: ${{ secrets.ALIYUN_HK187_HOST }}
-          username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
-          password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
-          source: "public/"
-          target: ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}
+          - name: Download a Build Artifact
+            uses: actions/download-artifact@v2
+            with:
+              name: site
+              # path: public
 
-      # 使用 SSH 链接远程服务器，将同步上去的文件移动到网站真正的部署目录
-      - name: SSH Remote login and deploy
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.ALIYUN_HK187_HOST }}
-          username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
-          password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
-          script: sh ~/deploy_website/bin/deploy_huangshujia_com.sh
-      
-      # Runs a single command using the runners shell
-      # - name: Run a one-line script
-      #   run: echo Hello, world!
+          # 使用 SSH 链接远程服务器，创建临时部署目录，该目录与 ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }} 相同
+          - name: SSH Remote login and create temporary directory
+            uses: appleboy/ssh-action@v0.1.4
+            with:
+              host: ${{ secrets.ALIYUN_HK187_HOST }}
+              username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
+              password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
+              script: sh ~/deploy_website/bin/creat_huangshujia_com_tmpdir.sh
 
-      # Runs a set of commands using the runners shell
-      # - name: Run a multi-line script
-      #   run: |
-      #     echo Add other actions to build,
-      #     echo test, and deploy your project.
+          # 使用 Rsync 同步文件，一直提示Permission Denity 烦死了
+          # - name: RSyncer Action
+          #  uses: Pendect/action-rsyncer@v1.1.0
+          #  env:
+          #    DEPLOY_KEY: ${{ secrets.ALIYUN_HK187_WEBSITE_KEY }}
+          #  with:
+          #    flags: '-avzr --delete'
+          #    src: './public/'
+          #    dest: '${{ secrets.ALIYUN_HK187_WEBSITE_USER }}@${{ secrets.ALIYUN_HK187_HOST }}:${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}'
+
+          # 使用 SCP 将文件传到远端服务器
+          - name: SCP Files to aliyun
+            uses: appleboy/scp-action@v0.1.1
+            with:
+              host: ${{ secrets.ALIYUN_HK187_HOST }}
+              username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
+              password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
+              source: public
+              target: ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}
+
+          # 使用 SSH 链接远程服务器，将同步上去的文件移动到网站真正的部署目录
+          - name: SSH Remote login and deploy
+            uses: appleboy/ssh-action@v0.1.4
+            with:
+              host: ${{ secrets.ALIYUN_HK187_HOST }}
+              username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
+              password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
+              script: sh ~/deploy_website/bin/deploy_huangshujia_com.sh
+
 
 
