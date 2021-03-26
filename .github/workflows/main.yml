@@ -27,6 +27,15 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v2
       
+      # 使用 SSH 链接远程服务器，创建临时部署目录，该目录与 ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }} 相同
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.ALIYUN_HK187_HOST }}
+          username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
+          password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
+          script: sh ~/deploy_website/bin/creat_huangshujia_com_tmpdir.sh
+
       # 使用 Rsync 同步文件，一直提示Permission Denity 烦死了
       # - name: RSyncer Action
       #  uses: Pendect/action-rsyncer@v1.1.0
@@ -36,19 +45,19 @@ jobs:
       #    flags: '-avzr --delete'
       #    src: './public/'
       #    dest: '${{ secrets.ALIYUN_HK187_WEBSITE_USER }}@${{ secrets.ALIYUN_HK187_HOST }}:${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}'
-          
 
-      # 用SCP将文件传到远端服务器
+
+      # 使用 SCP 将文件传到远端服务器
       - name: SCP Files to aliyun
         uses: appleboy/scp-action@v0.1.1
         with:
           host: ${{ secrets.ALIYUN_HK187_HOST }}
           username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
           password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
-          source: "./public/"
+          source: "public/"
           target: ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}
 
-      # 使用 SSH 链接远程服务器，然后可以添加可执行的shell（暂未）
+      # 使用 SSH 链接远程服务器，将同步上去的文件移动到网站真正的部署目录
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
         with:
