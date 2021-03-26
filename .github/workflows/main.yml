@@ -76,10 +76,10 @@ jobs:
       - name: SCP Files to aliyun
         uses: appleboy/scp-action@v0.1.1
         with:
+          source: ./
           host: ${{ secrets.ALIYUN_HK187_HOST }}
           username: ${{ secrets.ALIYUN_HK187_WEBSITE_USER }}
           password: ${{ secrets.ALIYUN_HK187_WEBSITE_PASSWORD }}
-          source: public
           target: ${{ secrets.ALIYUN_HK187_WEBSITE_PATH }}
 
       # 使用 SSH 链接远程服务器，将同步上去的文件移动到网站真正的部署目录
