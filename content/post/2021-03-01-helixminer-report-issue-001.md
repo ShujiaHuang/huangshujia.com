@@ -2,7 +2,7 @@
 title: "碱基周报（第 001 期）：肝脏，一个没有痛感神经的器官"
 description: "记录每周值得分享的生命科学和生物信息学进展内容，周日发布。"
 date: "2021-03-01 01:00:00+0800"
-image: "https://oscimg.oschina.net/oscnet/c60fe507-b2be-4afa-ab86-dc44bc270c4e.png"
+image: "http://cmdb.bgi.com/static/images/cngblogo.png"
 categories:
     - 碱基周报
 tags:
