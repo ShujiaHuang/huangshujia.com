@@ -16,7 +16,7 @@ DefaultContentLanguage: en
 
 permalinks:
     #post: /p/:slug/
-    post: /:year/:month/:day/:filename
+    post: /:year/:month/:filename
     page: /:slug/
 
 params:
