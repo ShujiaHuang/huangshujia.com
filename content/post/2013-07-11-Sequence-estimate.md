@@ -2,12 +2,14 @@
 title: "测序量估计"
 date: "2013-07-11 01:00:00+0800"
 image: https://images.squarespace-cdn.com/content/v1/53e4e1bbe4b08bfde27b5214/1444164857460-T50FJE9CGPYYEAOSQBWA/ke17ZwdGBToddI8pDm48kBAn57fvxhJmgXL6GZy1xhUUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dsXMtqy5rx4mcmbzj6URbFz6p6kzYKQ5yPdvVFehL9j1CjLISwBs8eEdxAxTptZAUg/image-asset.png?format=2500w
+description: "考虑这样一个问题，如果要保证基因组上95%的区域其覆盖深度在30x以上的话，那么最低的平均测序深度应该是多少?"
 categories:
     - 生物信息
+    - 统计学
 tags:
     - NGS
     - 测序技术
-    - 估计
+    - 统计估计
 ---
 
 考虑这样一个问题，如果要保证基因组上95%的区域其覆盖深度在30x以上的话，那么最低的平均测序深度应该是多少?
