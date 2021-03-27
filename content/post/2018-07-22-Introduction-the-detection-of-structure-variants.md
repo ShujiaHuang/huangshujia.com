@@ -1,7 +1,7 @@
 ---
 title: '一篇文章说清楚基因组结构性变异检测的方法'
 date: 2018-07-22 01:00:00+0800
-image: https://static.fungenomics.com/images/2021/03/Genomic+Data-20210327231159081.png
+image: https://static.fungenomics.com/images/2021/03/image-20210327232208841.png
 categories:
     - 生物信息
     - 基因组学
