@@ -1,7 +1,7 @@
 baseurl: https://huangshujia.com/
 languageCode: en-us
 theme: hugo-theme-stack
-paginate: 10
+paginate: 8
 title: "Shujia Huang | 黄树嘉"
 
 # Change it to My Disqus shortname before using

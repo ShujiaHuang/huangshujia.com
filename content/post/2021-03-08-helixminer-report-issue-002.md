@@ -1,7 +1,7 @@
 ---
 title: "碱基周报（第 002 期）：申请国家自然科学基金"
 description: "记录每周值得分享的生命科学和生物信息学进展内容，周日发布。"
-date: "2021-03-01 01:00:00+0800"
+date: "2021-03-08 01:00:00+0800"
 image: "https://static.fungenomics.com/images/2021/03/pexels-photo-146080.jpeg"
 categories:
     - 碱基周报
