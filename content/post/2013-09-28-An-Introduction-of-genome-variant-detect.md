@@ -1,7 +1,7 @@
 ---
 title: '基因组变异检测概述'
 date: 2013-09-28 01:00:00+0800
-image: https://image.fungenomics.com/variant_type_figure1.png
+image: http://image.fungenomics.com/variant_type_figure1.png
 categories:
     - 生物信息
     - 基因组学
@@ -52,7 +52,7 @@ OK！简单的科普就此完毕，剩余的在后面碰到了再说明，以下
 3. Read Depth（简称RD）；
 4. 基于de novo组装的方法（图1）。同时生物信息研究人员也已开发了众多根据以上4中策略中一种或者多种的软件用于结构性变异的检测。接下来我将对这四种策略以及他们各自的特点逐一进行介绍。
 
-![图1](https://image.fungenomics.com/variant_type_figure1.png)
+![图1](http://image.fungenomics.com/variant_type_figure1.png)
 <p style="text-align: center;">图1</p>
 
 ### 基于Pair-end Mapping（PEM）
@@ -67,7 +67,7 @@ OK！简单的科普就此完毕，剩余的在后面碰到了再说明，以下
 
 但是，事实上整个过程并不像流程图中看起来的那么简单，而且绝大多数的软件都在检测复杂的序列结构方面（如序列易位和序列倍增）存在很大的困难。
 
-![图2](https://image.fungenomics.com/variant_type_figure2.png)
+![图2](http://image.fungenomics.com/variant_type_figure2.png)
 <p style="text-align: center;">图2</p>
 
 ### Split Read（分裂read，简称SR）
