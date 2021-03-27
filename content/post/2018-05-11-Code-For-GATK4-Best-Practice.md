@@ -1,7 +1,7 @@
 ---
 title: 'GATK4全基因组数据分析最佳实践,我以这篇文章为标志,终结当前WGS系列数据分析的流程主体问题 | 完全代码'
 date: 2018-05-11 01:00:00+0800
-image: http://image.fungenomics.com/human_genome_project.gif
+image: https://static.fungenomics.com/images/2021/03/human_genome_project.gif
 categories:
     - 生物信息
     - 基因组学
@@ -9,9 +9,11 @@ tags:
     - NGS
     - WGS
     - 流程
+
+
 ---
 
-![](http://image.fungenomics.com/human_genome_project.gif)
+
 
 这是我根据之前的WGS系列和GATK4实践文章进行重新梳理之后确定下来的分析流程，这是一个WGS的最佳实践，它基于GATK4和我的实际经验，稍作修改即可应用到实际的项目中。我以这篇文章为标记，终结当前WGS系列数据分析的主体流程问题。
 
@@ -25,7 +27,6 @@ tags:
 之前我听说有些同学觉得改换了GATK4之后，担心原来基于GATK3的WGS分析方法就不适用了。这其实有些多虑了，WGS数据分析和解读是我们的目的，GATK是帮助我们达成该目的的一个重要工具，但如果有更好/更合适的工具，我们随时准备替换，甚至重写。所以GATK也好，BWA也罢，对于我们而言都只是“术”，重要的是，我们要知道该如何对数据进行分析和解读，这是根本之“道”。这也是我在写作过程中努力坚持的一个宗旨和原则。
 
 > 另外，我在以下流程的注释中留下了很多重要的信息，以及一些步骤的使用条件，例如某些步骤（比如HaplotypeCaller）可以有多种不同的实现路径，这个可以根据实际的需要进行选择。
-> 
 
 好了，现在进入正篇。
 
@@ -52,10 +53,10 @@ $ sh wgs_single.sh read.1.fq.gz read.2.fq.gz Test_RG Test_lib Test_sample Test_o
 
 以下是完整的流程代码：
 
-![](http://image.fungenomics.com/wgs_single_1.png)
-![](http://image.fungenomics.com/wgs_single_2.png)
-![](http://image.fungenomics.com/wgs_single_3.png)
-![](http://image.fungenomics.com/wgs_single_4.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_single_1-20210327230326472.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_single_2-20210327230326709.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_single_3-20210327230326878.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_single_4-20210327230327110.png)
 
 ## 第二：多样本模式
 
@@ -69,19 +70,19 @@ $ sh wgs_single.sh read.1.fq.gz read.2.fq.gz Test_RG Test_lib Test_sample Test_o
 
 以下是第一步的代码，参数和单样本模式一样。这个代码我们可以把它存放在一个名为wgs_fastq_to_gvcf.sh的文件中：
 
-![](http://image.fungenomics.com/wgs_pop_fastq_to_gvcf_1.png)
-![](http://image.fungenomics.com/wgs_pop_fastq_to_gvcf_2.png)
-![](http://image.fungenomics.com/wgs_pop_fastq_to_gvcf_3.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_pop_fastq_to_gvcf_1-20210327230327279.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_pop_fastq_to_gvcf_2-20210327230327587.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_pop_fastq_to_gvcf_3-20210327230327651.png)
 
 接着，这是第二步的代码，我们把它存放在一个名为wgs_gvcf_to_vcf.sh的文件中。需要强调的是，它的输入和输出参数需要与第一步保持一致，流程中我对此做了额外的注释：
 
-![](http://image.fungenomics.com/wgs_pop_gvcf_to_vcf_1.png)
-![](http://image.fungenomics.com/wgs_pop_gvcf_to_vcf_2.png)
-![](http://image.fungenomics.com/wgs_pop_gvcf_to_vcf_3.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_pop_gvcf_to_vcf_1-20210327230327767.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_pop_gvcf_to_vcf_2-20210327230327906.png)
+![](https://static.fungenomics.com/images/2021/03/wgs_pop_gvcf_to_vcf_3-20210327230328056.png)
 
 使用方式可以参考上文“单样本模式”的例子，直接在命令行中完成即可，不再赘述。
 
-![](http://image.fungenomics.com/%E5%88%86%E4%BA%AB.jpg)
+![](https://static.fungenomics.com/images/2021/03/%E5%88%86%E4%BA%AB-20210327230328194.jpg)
 
 ## 变异注释
 
@@ -115,7 +116,7 @@ time $VEP --fasta $reference/Homo_sapiens_assembly38.fasta \
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230259323-20210327230328389.png)
 
 ***
 
@@ -126,5 +127,4 @@ time $VEP --fasta $reference/Homo_sapiens_assembly38.fasta \
 在这里你可以结识到全国优秀的基因组学和生物信息学专家，同时可以分享你的经验、见解和思考，有问题也可以向我提问和圈里的星友们提问。
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://wx.zsxq.com/mweb/views/joingroup/join_group.html?group_id=518881585444&secret=vcdvs4rdpst7stq4wcvqmlwvogc0ssbn&user_id=28821152428221)
-
 

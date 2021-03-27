@@ -1,15 +1,15 @@
 ---
 title: 'RNA-seq原始数据质控后,是否要合并PE和SE的比对结果|《解螺旋技术交流圈》精华第1期'
 date: 2018-05-02 01:00:00+0800
-image: http://image.fungenomics.com/choice-colors-colours-5933.jpg
+image: https://static.fungenomics.com/images/2021/03/choice-colors-colours-5933.jpg
 categories:
     - 生物信息
     - 基因组学
 tags:
     - RNA
----
 
-![](http://image.fungenomics.com/choice-colors-colours-5933.jpg)
+
+---
 
 ## 思考这样一个问题：“RNAseq原始的Pair-end测序数据质控之后，部分Pair-end的read变成了Single-end的read，分开比对后得到了PE的BAM和SE的BAM，这个时候要不要合并这两个BAM文件？”
 
@@ -18,15 +18,17 @@ tags:
 ## 思考问题的熊：
 
 > 这个问题可能需要多几个角度考虑。 
+>
 > 1. 为什么质控之后双端的reads变成了单端？一种可能是因为一端的read质控确实不合格，第二种情况（通常也是更常见的）是因为因为建库的原因，去接头之后两条reads overlap，从信息量来说就变成了单端，这个时候类似trimmomatic的软件就会默认把其中一条read当作无用read而扔掉。 
 > 2. 通常来说，因为第一种情况而过滤掉的reads是相对少的，因此扔掉并无大碍，但是第二种就出问题了。目前大多数软件都不支持直接输入PE和SE的fastq文件进行mapping，你就必须把它分开做，这个时候你要是把单端的敢扔掉其实就是扔掉了大量的信息。 
 > 3. 怎么解决这个问题呢？目前看来比较简单的方法是直接将trimmomatic的一个参数keepBothReads 改为true ，让因为第二种原因而扔掉的reads得以保留，然后直接用pair的fastq做mapping就可以了。 
 > 4. 这个参数的影响可以看图
-> ![](http://image.fungenomics.com/Trimmomatic_for_RNAseq.jpg)
+>    ![](https://static.fungenomics.com/images/2021/03/Trimmomatic_for_RNAseq-20210327230224234.jpg)
 
 ## 解螺旋的矿工（星球中的星主：YellowTree+）：
 
 > RNAseq的数据在质控之后，有时候甚至会有多达10%的read会从Pair-end变为Single-End！！！丢掉的话，损失很大，所以要考虑留下来。我的看法和 @思考问题的熊 有相似之处，不过在处理Single-End的read上有些不同。我觉得可以这样做： 
+>
 > 1. 过滤后，Pair-end read和Single-End Read分开各自去完成比对，得到各自的比对结果（BAM格式）；
 > 2. 分别计算PE的比对结果和SE比对结果在各个转录本上的覆盖数，然后把它们相加起来； 
 > 3. 再用想在常用的基因表达分析工具（如EdgeR、DESeq等）进行下游分析； 
@@ -58,7 +60,8 @@ Input Read Pairs: 2500 Both Surviving: 2439 (97.56%) Forward Only Surviving: 22 
 TrimmomaticPE: Completed successfully
 # 将 ILLUMINACLIP 第六个参数改为 true，其余所有参数均相同，结果有 97.56% paired reads 保留下来
 ```
-![知识星球](http://upload-images.jianshu.io/upload_images/2248079-8612d9b5e057bb24.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![知识星球](https://static.fungenomics.com/images/2021/03/1240-20210327230158147-20210327230224266.jpeg)
 
 ***
 
@@ -76,7 +79,8 @@ TrimmomaticPE: Completed successfully
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230158430-20210327230224498.png)
+
 ***
 
 这是知识星球：**解螺旋技术交流圈**，是一个我与读者朋友们的私人朋友圈，欢迎你的加入。我有9年前沿而完整的生物信息学、NGS领域的工作经历，在该领域发有多篇Nature级别的科学文章。
@@ -86,5 +90,4 @@ TrimmomaticPE: Completed successfully
 在这里你可以结识到全国优秀的基因组学和生物信息学专家，同时可以分享你的经验、见解和思考，有问题也可以向我提问和圈里的星友们提问。
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://wx.zsxq.com/mweb/views/joingroup/join_group.html?group_id=518881585444&secret=vcdvs4rdpst7stq4wcvqmlwvogc0ssbn&user_id=28821152428221)
-
 

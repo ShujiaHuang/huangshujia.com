@@ -1,7 +1,7 @@
 ---
 title: '为什么说FPKM/RPKM是错的'
 date: 2015-08-25 01:00:00+0800
-image: http://image.fungenomics.com/rna.png
+image: https://static.fungenomics.com/images/2021/03/rna.png
 categories:
     - 生物信息
 tags:
@@ -9,7 +9,11 @@ tags:
     - RPKM
     - FPKM
     - TPM
+
+
 ---
+
+
 
 两周前，我接触了一个RNA-seq的项目，做完之后，我重新思考了FPKM和RPKM的计算，觉得它们很可能是不对的，后来查阅了一些文献终于验证了我的想法。现在我重新将这个过程记录了下来：
 
@@ -64,17 +68,17 @@ $$r_{mean} = \frac{1}{g_{total}}$$
 
 举个例子来说明（以FPKM的计算为例），我们假定有两个来自同一个个体不同组织的样本X和Y，这个个体只有5个基因，分别为A、B、C、D和E，它们的长度分别如下：
 
-![gene_length](http://image.fungenomics.com/rpkm1.png)
+![gene_length](https://static.fungenomics.com/images/2021/03/rpkm1-20210327224251272.png)
 
 由此，我们可以得到，样本X和Y的转录本的不变量，$r_{mean}$值都是$r_{mean} = \frac{1}{5} = 0.2$。如果FPKM或RPKM是一个合适的统计量的话，那么至少，样本X和Y的平均FPKM（或RPKM）值应该相等。
 
 我们以FPKM的计算的为例子，以下这个表格列出的分别是样本X和Y在这5个基因中比对上的fregment数和各自总的fregment数量：
 
-![fregments](http://image.fungenomics.com/rpkm2.png)
+![fregments](https://static.fungenomics.com/images/2021/03/rpkm2-20210327224251289.png)
 
 于是，按照以上公式我们可以得到样本X和Y在这5个基因上的FPKM值分别为：
 
-![FPKM](http://image.fungenomics.com/rpkm3.png)
+![FPKM](https://static.fungenomics.com/images/2021/03/rpkm3-20210327224251314.png)
 
 接下来就可以计算FPKM的均值了。我们得到，样本X在这5个基因上的FPKM均值$FPKM_{mean} = 5,680$；而样本Y的FPKM均值却是$FPKM_{mean} = 161,840$!! 它们根本不同，而且差距相当大，**那么究竟为什么会有如此之大的差异？**难道这是我故意构造出来的例子所造成的吗？当然不是，**这是由其数学计算上的缺陷所导致的**。
 
@@ -94,7 +98,7 @@ $$TPM_{mean} = \frac{10^6}{N}$$
 
 这个值也刚好是$r_{mean}$的$10^6$倍，满足上述等价描述的关系。我们仍然通过上面的例子来进作说明，为简单起见我们只把fregment换为read，其他数字都一样，并且统一假设$read_l$都是一样的：
 
-![TPM](http://image.fungenomics.com/rpkm4.png)
+![TPM](https://static.fungenomics.com/images/2021/03/rpkm4-20210327224251334.png)
 
 接着，我们可以分别计算样本X和Y的TPM_mean,并且很明显它们都是$200000 = 10^6 / 5$. 而且，经过这样的标准化之后，X和Y就处于同样的一个标准上了，此刻，彼此之间的比较分析才是真正有意义的。
 
@@ -126,4 +130,4 @@ FPKM/RPKM和TPM存在一定的正比关系，因此我们在使用FPKM/RPK时，
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327224217642-20210327224251601.png)

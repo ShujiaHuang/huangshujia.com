@@ -1,15 +1,19 @@
 ---
 title: '博客大改版：添加评论，二维码生成，数学公式的显示，添加分析代码等'
 date: 2014-07-18 01:00:00+0800
-image: https://image.fungenomics.com/st.post.2014-07-09-github_logo.png
+image: https://static.fungenomics.com/images/2021/03/st.post.2014-07-09-github_logo-20210327223045432-20210327223053119.png
 categories:
     - Blog
 tags:
     - 网站插件
+
+
 ---
 
 ### 目录
+
 ----
+
 &nbsp;&nbsp;&nbsp;&nbsp;[**概述**](#introduce)     
 &nbsp;&nbsp;&nbsp;&nbsp;[**评论系统由Disqus改成了多说**](#1)    
 &nbsp;&nbsp;&nbsp;&nbsp;[**添加google analytics**](#2)     
@@ -22,7 +26,9 @@ tags:
 <a id='introduce' name='introduce'> </a>
 
 ### 概述
+
 ----
+
 前几天把博客改版了，在[Jekyll wiki](https://github.com/jekyll/jekyll/wiki/Sites)上爬主题来回爬了好几遍，先是爬了[Linghua Zhang](https://lhzhang.com/),而后又直接爬了[yihui](https://yihui.name/)和[Carl Chen](https://webfrogs.me/)，不过做我这个版面主题的原始作者是[yihui](https://yihui.name/)，随便一提这位是牛人，[统计之都](https://cos.name/)和[COS](https://cos.name/cn/)论坛，以及中国R会议（第一届开始）都是他弄的，年纪轻轻且最近已经出了两本和R相关的书在亚马逊上卖了，恐怕国内（+很多国外）用过R的基本都知道！感兴趣的可以去他的[主页](https://yihui.name/)扒扒。。。扯远了，说回我自己，虽然我也想改得更加不同一些，但一方面暂时还没啥时间，其次，此前未碰过任何与网页制作相关之事，HTML勉强能看，css和js就停留在听说过这两词的地步；然，最重要的是，我也看上了这个版面！所以门面修改一事先缓一缓吧，先在这里谢过各位作者大人！但是话也说回来，以上只要有任意一位作者介意，我也只能作罢，重新扒过。
 
 OK，既然现在外在的部分还无力去动，那接下来，我说一下自己所做的一些内在改变。
@@ -30,9 +36,10 @@ OK，既然现在外在的部分还无力去动，那接下来，我说一下自
 <a id='1' name='1'> </a>
 
 ### 1. 评论系统由Disqus改成了多说
+
 ----
 
-![多说](https://www.lagou.com/upload/webproduct/ff80808142c5ed7f0142c6bb08cc12fe.png)
+![多说](https://static.fungenomics.com/images/2021/03/ff80808142c5ed7f0142c6bb08cc12fe-20210327223235144.png)
 
 我倒不是排斥Disqus，一开始我用的就是它，Disqus，国际化，版面简洁，管理容易，主页也生动，cool，我很喜欢！一个账号说遍天下，当然这一点上多说也一样。换掉它根本的原因还是在于伟大的‘墙’，Disqus只具有分享到Facebook和Twitter的功能，而这两货正常途径咱是上不了的。也罢，在国内的话多说用起来确实要更友好些，所以这次改版就重新选择了和国内社交网络联系在一起的多说。
 
@@ -66,6 +73,7 @@ OK，既然现在外在的部分还无力去动，那接下来，我说一下自
 <a id='2' name='2'> </a>  
 
 ### 2. 添加google analytics
+
 ----
 
 ![GA](https://www.proyectosbds.com/blog/wp-content/uploads/2012/11/google-analytics-impementation.jpg)
@@ -108,9 +116,10 @@ __注意:__ *在国内使用google analytics 并不是一个明智的做法，�
 <a id='3' name='3'> </a>
 
 ### 3. 如何搞定数学公式显示问题
+
 ----
 
-![mathJax](https://media.journals.elsevier.com/content/images/main/elsevier-continues-as-mathjax-12092220.jpg)
+![mathJax](https://static.fungenomics.com/images/2021/03/elsevier-continues-as-mathjax-12092220-20210327223236015.jpg)
 
 makrdown是个好东西，jekyll+markdown做网站很容易！但麻烦的是，markdown不能支持LaTeX，我写个数学公式在那上面，它解析不了，只是原封不动的显示在那。。这一点真让人捉急！咋办？又是一番的google，后来还是找到了个好办法——[MathJax](https://www.mathjax.org/)，它是一个数学公式显示引擎，能够把LaTeX编辑的公式在网页上显示出来，不过它是在线解析的，公式如果比较多的话，显示速度会稍慢。要用MathJax，需要先把`_config.yml`中的makrdown解析器换成`kramdown`，不然用不了。我同样也是写成模块`mathJax.md`，然后由post.html调用(估计我也不会在除了博客之外的地方用到它)，为了加载速度，也放的靠后一些，刚好在多说模块上面，下面是我用的mathJax.md模块的代码，当然了，若有需要你也可以使用：
 
@@ -139,7 +148,9 @@ $$
 <a id='4' name='4'> </a>
 
 ### 4. 如何让每个页面自动生成二维码
+
 ----
+
 ![QR](https://image.fungenomics.com/st.post.2014-07-18-Figure4-QRcode.jpg)
 
 二维码的作用其实也不必做多解释，最重要的就是方便。我之前并不知道可以用Google API为网站自动生成二维码一事，直到我成功了之后才恍然一悟，真是隔行如隔山。一开始我都是暴力解决：找个能生成二维码的网站，把自己每一篇博客的网址贴进去，点击生成二维码，然后再把这个生成的二维码图片下载下来，接着将它上传至图床，最后再将图片的链接添加到每篇博客的最后！这实在是。。。这个过程就算只是这样说起来都觉得十分费事，可以想象操作起来该有多费劲，而且一旦网站发生调整，就得重来一遍，实在低效！所以我一直寻思着该如何做才能让网页自己去产生二维码，一定要将它自动化！后来注意到了这个[QR生成器](https://www.the-qrcode-generator.com/)，并且受到它`share`按钮中内容的启发，我当时就在想为什么它这样的一段代码（如下）在插入到网页中之后就能出来一个二维码呢？（当然这个二维码是指向它自己网站的）
@@ -167,6 +178,7 @@ __注意:__ *后来在国内发现上面这个基于google的二维码，不但�
 <a id='5' name='5'> </a>
 
 ### 5. 如何添加“返回顶部”按钮
+
 ----
 
 ![Backtop](https://85ryan.com/wp-content/uploads/2013/09/simple-jquery-back-to-top-button.jpg)
@@ -189,6 +201,7 @@ __注意:__ *后来在国内发现上面这个基于google的二维码，不但�
 <a id='6' name='6'> </a>
 
 ### 6. 其他
+
 ----
 
 （1）关于主页上的“[FORUM](/forum)”，本来有打算做成类似于论坛形式可以让大家就某个话题来进行讨论，但是发现要实现这个功能难度很大工作量不小！限于我自己能力有限，这个也得慢慢来，暂时将就变成了贴“鸡汤文”的板子了，o(╯□╰)o！
@@ -197,13 +210,13 @@ __注意:__ *后来在国内发现上面这个基于google的二维码，不但�
 
 （3）图床的选择。图床对于独立博客来说是一个重要又头疼的事情，目前我直接用[点点博客](https://www.diandian.com/)的图片功能，使用外链。它的好处是免费，稳定，访问速度也快，要是真有一天点点不允许这样用的话，那我也不怕，实在不行就用七牛(__注: 已改用七牛__ )，或者想办法用Github作为图床。
 
-<a id='7' name='7'> </a>
-
 ### 7. 最后
+
 ----
+
 OK！唠叨了不少总算把这篇文章写完了。接下来与博客搭建相关的内容先暂放一边了，我要回归主业的更新了。
 
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327223119428-20210327223238521.png)

@@ -1,7 +1,7 @@
 ---
 title: '如何使用Python处理BAM'
 date: 2017-12-07 01:00:00+0800
-image: http://image.fungenomics.com/coding.cover.jpeg
+image: https://static.fungenomics.com/images/2021/03/coding.cover.jpeg
 categories:
     - 生物信息
     - 基因组学
@@ -9,9 +9,11 @@ tags:
     - BAM
     - Python
     - Pysam
+
+
 ---
 
-![](http://image.fungenomics.com/coding.cover.jpeg)
+
 
 在上一篇的文章里我详细介绍了BAM（SAM/CRAM）的格式和一些需要注意的细节，还说了该如何使用samtools在命令行中对其进行操作。但是很多时候这些操作是不能满足我们的实际需要的，比如统计比对率、计算在某个比对质量值之上的read有多少，或者计算PE比对的插入片段长度分布，甚至需要你根据实际情况编写一个新的变异检测算法等。这个时候往往难以直接通过samtools来实现【注】，而是需要编写专门的程序进行计算。因此，在这一篇文章里我们就一起来学习应该如何在程序中借助Pysam来处理BAM文件。
 
@@ -38,7 +40,7 @@ Pysam是一个专门用来处理（BAM/CRAM/SAM）比对数据和变异数据（
 
 ## 如何使用Pysam
 
-![Pysam](http://image.fungenomics.com/fig1.pysam.png)
+![Pysam](https://static.fungenomics.com/images/2021/03/fig1.pysam-20210327225411692.png)
 
 首先，要为我们的Python环境安装这个包，如果已安装过的话可以忽略这一步。有两个方法，pip和bioconda，都比较简单，我们这里以pip——Python的包管理工具来进行：
 
@@ -60,7 +62,7 @@ Pysam中的函数有很多，但是重要的读取函数主要有：
 
 等以上几个，其中尤以AlignmentFile和VariantFile为核心。需要我们注意到的地方是，Pysam中的有些函数由于历史原因存在重复，比如名字上只有大小写的差异，但功能却是一样的（比如下图的TabixFile），有些则只是简化了函数名，这些情况用的时候留个心眼就行了。
 
-![Tabixfile重名](http://image.fungenomics.com/fig2.pysam.png)
+![Tabixfile重名](https://static.fungenomics.com/images/2021/03/fig2.pysam-20210327225411711.png)
 
 另外，这篇文章的目的是介绍如何处理比对文件，所以我打算只介绍`AlignmentFile`。
 
@@ -104,7 +106,7 @@ chrM 314 60 -207
 
 当然，上面这个例子其实非常简单，实际上r变量中还有很多其它关于比对的信息，下面这个截图，就是变量中能够获取到的所有比对相关的信息，有好几十个。
 
-![函数很多](http://image.fungenomics.com/fig3.pysam.png)
+![函数很多](https://static.fungenomics.com/images/2021/03/fig3.pysam-20210327225411779.png)
 
 眼尖的同学可能也发现了，这里面存在一些名字类似的变量，如：r.mapping_quality 和 r.mapq，它们其实都是比对质量值。类似的也还有几个，这都是上面我提到的历史原因所致，不过这种多余变量随着Pysam的维护也正在逐步变少。
 
@@ -144,6 +146,7 @@ bf.close()
 **问题：如何输出覆盖在某个位置上，比对质量值大于30的所有碱基？**
 
 这个问题包含两个部分：
+
 * 固定的某个位置（我们这里还是用chrM 301这个位置）
 * read比对质量值必须是大于30
 
@@ -223,5 +226,5 @@ with pysam.AlignmentFile(tmpfilename, "wb", header=header) as outf:
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225341323-20210327225412015.png)
 

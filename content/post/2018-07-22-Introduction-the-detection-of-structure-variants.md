@@ -1,16 +1,18 @@
 ---
 title: '一篇文章说清楚基因组结构性变异检测的方法'
 date: 2018-07-22 01:00:00+0800
-image: http://image.fungenomics.com/Genomic+Data.png
+image: https://static.fungenomics.com/images/2021/03/Genomic+Data-20210327231159081.png
 categories:
     - 生物信息
     - 基因组学
 tags:
     - NGS
     - 变异检测
+
+
 ---
 
-![](http://image.fungenomics.com/Genomic+Data.png)
+
 
 > 这源自于我[2013年的一篇旧文](http://www.huangshujia.me/2013/09/28/2013-09-28-An-Introduction-of-genome-variant-detect.html)，另外，那篇文章也已被转载得有些走样了，我决定要重新组织。虽然主体没有大的变化，但是内容在这里作了较多的翻新。对于初学者来说，如果你之前看过了我的那篇旧文，还是建议你再看一次，或许可以有新的发现，如果你从未看过，那么请不要轻易错过。
 
@@ -24,7 +26,8 @@ tags:
 * 很短的Insertion 和 Deletion，也常被我们合并起来称为Indel。主要指在基因组某个位置上发生较短长度的线性片段插入或者删除的现象。强调线性的原因是，这里的插入和删除是有前后顺序的与下述的结构性变异不同。Indel长度通常在50bp以下，更多时候甚至是不超过10bp，这个长度范围内的序列变化可以通过Smith-Waterman 的局部比对算法来准确获得，并且也能够在目前短读长的测序数据中较好地检测出来；
 * 基因组结构性变异（Structure Variantions，简称SVs），这篇文章的重点，通常就是指基因组上大长度的序列变化和位置关系变化。类型很多，包括长度在50bp以上的长片段序列插入或者删除（Big Indel）、串联重复（Tandem repeate）、染色体倒位（Inversion）、染色体内部或染色体之间的序列易位（Translocation）、拷贝数变异（CNV）以及形式更为复杂的嵌合性变异。
 
-![](http://image.fungenomics.com/fig1.SVs-Type.png)
+![](https://static.fungenomics.com/images/2021/03/fig1.SVs-Type-20210327231034490-20210327231234369.png)
+
 <p align="center"><a>图1. 结构性变异的不同种类</a></p>
 
 
@@ -34,7 +37,8 @@ tags:
 * 有研究发现，基因组上的SVs比起SNP而言，更能代表人类群体的多样性特征；
 * 稀有且相同的一些结构性变异往往和疾病（包括癌症）的发生相互关联甚至还是其直接的致病诱因。比如，《我不是药神》电影中提到的慢粒白血病，它就和基因组的结构性变异直接相关。它是由于细胞中的9号染色体长臂与22号染色体长臂相互易位，导致ABL基因和BCR基因融合，形成了一个会导致ABL异常表达的小型染色体（称为费城染色体）发生的。这是一个典型的结构性变异致癌的例子。
 
-![](http://image.fungenomics.com/fig2.300px-Philadelphia_Chromosom.png)
+![](https://static.fungenomics.com/images/2021/03/fig2.300px-Philadelphia_Chromosom-20210327231034505-20210327231234387.png)
+
 <p align="center"><a>图2. 9号染色体和22号染色体长臂发生易位，形成"费城染色体"，常导致慢性粒细胞白血病。没错！也就是《我不是药神》中可以用”格列卫“治疗的一种白血病</a></p>
 
 类似的例子还有很多。不过应该注意的地方是，大多数的结构性变异并不直接与疾病的发生相关联，很多也不一定会致病，它还与周围环境的响应或者其他的一些表型多态性有关。
@@ -43,7 +47,8 @@ tags:
 
 > 除了测序的方法之外，一些专用的基因芯片也可以用于检测一部分结构性变异，好处是成本低，但是局限大，而且芯片技术实际上只对大片段的序列删除这类变异比较灵敏，无法做到全面，同时做不到单碱基精度的断点检测。
 
-![](http://image.fungenomics.com/fig3.omictools-SVs.png)
+![](https://static.fungenomics.com/images/2021/03/fig3.omictools-SVs-20210327231034530-20210327231234468.png)
+
 <p align="center"><a>图3. 数量众多的SVs检测工具</a></p>
 
 工具虽然不少，但其实归纳起来，基于NGS数据的变异检测算法并不多。总的来说主要有以下4种不同的策略和方法，分别是：
@@ -53,29 +58,34 @@ tags:
 * Read Depth，简称RD，也有人将其称为RC——Read Count的意思，它与Read Depth是同一回事，顾名思义都是利用read覆盖情况来检测变异的方法；
 * 序列从头组装（de novo Assembly， 简称AS）的方法。
 
-![](http://image.fungenomics.com/variant_type_figure1.png)
+![](https://static.fungenomics.com/images/2021/03/variant_type_figure1-20210327231034656-20210327231234550.png)
+
 <p align="center"><a>图4. 四种类不同的算法进行结构性变异的检测分类，行是结构性变异类型，列是算法</a></p>
 
 接下来我将对这四种不同的方法以及它们各自的特点逐一进行展开介绍。但是，具体要用什么软件，参数要怎么设置，命令要怎么跑，这写操作性的内容我就不在这篇文章中展开了，大家可以看其参考文档（如果它的参考文档没有写明白，那么多半说明这个软件做的不怎么样，慎用）。这篇文章的目的是想让大家对这些SVs方法有一个宏观上的认识，让你知道原来基因组上结构性变异检测是这样的。
 
 ## 基于Read Pair（RP），也就是Pair-end Mapping（PEM）的方法
 
-![](http://image.fungenomics.com/variant_type_figure2.png)
+![](https://static.fungenomics.com/images/2021/03/variant_type_figure2-20210327231034703-20210327231234613.png)
+
 <p align="center"><a>图5. 一般的RP流程</a></p>
 
 这是RP方法的一个主要框架，用的比较多。它的思想是这样的：**我们知道PE测序的两条read（通常称为read1和read2），它们原本就是来自于同一个序列片段的**（如下图，对此不清楚的同学也可以查看[这一篇文章](https://mp.weixin.qq.com/s/awdjoXRYobrQAbXmAp3C0g)）。
 
-![](http://image.fungenomics.com/fig6.PE-seq.jpg)
+![](https://static.fungenomics.com/images/2021/03/fig6.PE-seq-20210327231034893-20210327231234714.jpg)
+
 <p align="center"><a>图6. Pair-End 测序</a></p>
 
 因此，**Read1和Read2之间存在着客观的物理关联（它们就是在一起的）**，而且它们之间的距离——图中这个淡蓝色序列片段（通常称为插入片段）的长度，**称为插入片段长度（Insert size）**。一般来说我们是无法直接获得每一对read1和read2之间真实的插入片段长度的，但通过序列比对，计算它们彼此之间比对位置上的距离却可以间接获得这个长度——BAM文件的第9列记录的就是这个值（这里是BAM的格式和关于使用Pysam处理BAM文件的文章[https://mp.weixin.qq.com/s/c0O5qHBnybZNKCERLzYbJQ]中我还举了提取插入片段长度的例子），如下图：
 
-![](http://image.fungenomics.com/fig7.insert-size-in-bam.png)
+![](https://static.fungenomics.com/images/2021/03/fig7.insert-size-in-bam-20210327231034940-20210327231234816.png)
+
 <p align="center"><a>图7. 在BAM文件中可以方便地得到Insert size信息</a></p>
 
 **这个插入片段长度的分布是RP方法进行变异检测的一个关键信息。**我们知道，在测序之前需要先用超声或者酶切的办法把原始的DNA序列进行打断处理，然后再挑选某一个长度（比如说500bp）的DNA片段来上机测序。在这个过程中，虽然我们都希望挑选的序列是一样长的，但这肯定是不可能的。**事实上，我们得到的片段长度通常都会围绕某个期望值（比如我们这里的500bp）做上下波动。**如果我们把这些按照比对位置计算获得的“插入片段长度”提取出来做个分布图，会看到它的样子通常如下：
 
-![](http://image.fungenomics.com/fig8.insert-size-distribution.jpg)
+![](https://static.fungenomics.com/images/2021/03/fig8.insert-size-distribution-20210327231034958-20210327231234862.jpg)
+
 <p align="center"><a>图8. Insert size 长度分布</a></p>
 
 没错！**如无意外你见到的一般都是类似这样的一个钟形线——正态分布，**理论上它也应该是一个正态分布。而且由于基因组上存在变异的序列毕竟是少数，所以，这个分布本身就能够反映“插入片段长度”在绝大多数情况下的真实分布情形，那么对于那些小部分不能反映真实情况（偏离分布中心的片段长度）的是什么呢？是隐含的变异信号！
@@ -85,6 +95,7 @@ tags:
 **总的来说，RP通过利用比对距离、read1和read2之间的位置关系这两个重要信息实现了基因组上多种结构性变异的检测。**
 
 利用这样的原理，RP方法理论上能够检测到的变异类型可以包含如下6种：
+
 * 序列删除（Deletion）
 * 序列插入（Dnsertion）
 * 序列倒置（Inversion）
@@ -92,7 +103,8 @@ tags:
 * 序列串联重复/倍增，也就是常说的Tandem duplications
 * 序列在基因组上的散在重复（Interspersed duplications）
 
-![](http://image.fungenomics.com/fig9.RP-detect-SVs.png)
+![](https://static.fungenomics.com/images/2021/03/fig9.RP-detect-SVs-20210327231034992-20210327231234997.png)
+
 <p align="center"><a>图9. 适合RP策略检测的6类结构性变异，蓝绿色的小块代表的是测序Read</a></p>
 
 应该说检测的范围还是比较广的，但对于RP存在缺陷的地方需要指出：
@@ -114,7 +126,8 @@ SR这个方法，起源于Sanger长片段测序数据变异检测的场景，而
 
 图10，展示了SR方法所能检测到的变异类型以及它是如何用这些Split reads的信号来进行结构性变异检测的，其中的红色线段就是被split出来并重新比对的序列。可以看出在不同的变异类型中，这些split的信号是不同的，而且它们和RP相比也很不同，SR的read通常都会被“撕裂”出来，而RP则是“无伤”完整的read，大家注意对比这个区别。
 
-![](http://image.fungenomics.com/fig10.SR-detect-SVs.png)
+![](https://static.fungenomics.com/images/2021/03/fig10.SR-detect-SVs-20210327231035016-20210327231235120.png)
+
 <p align="center"><a>图10. SR所能够检测的变异类型和方法特点</a></p>
 
 以Pindel为例子，再说一下其利用SR进行变异检测的思想原理。
@@ -133,7 +146,8 @@ Read Depth（有时也叫Read Count）简称RD，是目前解决基因组拷贝�
 
 **RD的原理基于read覆盖深度。全基因组测序（WGS）得到的覆盖深度呈现出来的是一个泊松分布**——因为基因组上任意一个位点被测到的几率都是很低的——是一个小概率事件，在很大量的测序read条件下，其覆盖就会呈现一个泊松分布，如下图。
 
-![](http://image.fungenomics.com/fig11.Sequencing-depth-histogram-The-distribution-closely-matches-the-expected.png)
+![](https://static.fungenomics.com/images/2021/03/fig11.Sequencing-depth-histogram-The-distribution-closely-matches-the-expected-20210327231035042-20210327231235151.png)
+
 <p align="center"><a>图11. 典型的WGS覆盖深度分布图</a></p>
 
 **目前有两种利用Read depth信息检测CNV的策略**。一种是，**通过检测样本在参考基因组上read的深度分布情况来发现CNV，**这类适用于单样本，也是用的比较多的一个方法；另一种则是通过识别并比较两个样本在基因组上存在丢失和重复倍增的区域，以此来获得彼此相对的CNV，适用于case-control模型的样本，或者肿瘤样本Somatic CNV的发现，这有点像CGH芯片的方法。
@@ -154,21 +168,23 @@ CNVnator使用的是第一种策略，同时也广泛地被用于检测大的CNV
 
 我们在丹麦人国家基因组项目中用的就是这方法，其中的基于长序列的SVs检测算法也是我主要开发的，效果还不错。我们发了三篇文章（第一篇Pilot1在《Nature Communication》上，方法学一篇在《GigaScience》上，以及最后的主文章在《Nature》上），应该说是做出了有史以来最完整的人群基因组结构性变异图谱，填补了以前很多地方上的空白（图13），这个项目从2015年到目前为止加上我们和丹麦三所高校应该已经发了10来篇文章了。
 
-![](http://image.fungenomics.com/fig12.SVs-In-Dannish-Genome.png)
+![](https://static.fungenomics.com/images/2021/03/fig12.SVs-In-Dannish-Genome-20210327231035065-20210327231235273.png)
+
 <p align="center"><a>图12. 柱子的白色部分是其它检测算法所发现不了的SVs暗区，但我们在利用组装的方法在丹麦人基因组中解决了</a></p>
 
 但就像我前面说到的，序列从头组装要装的好，还是比较棘手的，对高等植物和脊椎动物来说，也是如此。最主要的原因在于，这些物种基因组上所存在的重复性序列和序列的杂合会严重影响组装的质量，除去资金成本，这也在很大程度上阻碍了利用组装的方法在基因组上进行变异检测的应用。
 
 ## 最后，结构性变异检测的方法这么多，我该如何选择
 
-![](http://image.fungenomics.com/table1.select-method-for-detecting-SVs.png)
+![](https://static.fungenomics.com/images/2021/03/table1.select-method-for-detecting-SVs-20210327231035146-20210327231235454.png)
 上面这个表列出了目前主流工具所适合的SVs，可以根据实际情况进行选择。
 
 其实通过上面对四种不同SVs检测策略的比较也可以发现，小长度范围内的变异以及较长的deletion，问题不大，但对于大多数的Insertion和更复杂的结构性变异情况，当前的检测软件基本都没法还解决。**Assembly应是当前全面获得基因组上各种变异的最好方法，但是目前的局限却也发生在Assembly本身，若是基因组没能装得好，后面的变异检测就更是无从说起。**从目前的情况看，de novo assembly的方法并不能很快进入实际的应用。**因此，暂且不提assembly，其余的三种策略都各有各的优势，从目前的结果看，并没有哪一款软件能够一次性地将基因组上的各种不同情况变异类型都获得。因此就目前短reads高通量测序技术来说，最合适的方案应是结合多个不同的策略，将结果合并在一起，这样可以最大限度地将FN和FP降低。**Speedseq和HugeSeq应该是这方面的一个典范。
 
 文末，再来一个各类SVs检测方法大比拼的大表供大家参考，很有价值不要错过哦，它来自于[这篇文章](https://academic.oup.com/bib/article/16/5/852/217239)，如下：
 
-![](http://image.fungenomics.com/table2.SVs-methods.png)
+![](https://static.fungenomics.com/images/2021/03/table2.SVs-methods-20210327231035206-20210327231235568.png)
+
 <p align="center"><a>各类SV检测算法大比拼</p>
 
 *参考文献*
@@ -198,10 +214,12 @@ CNVnator使用的是第一种策略，同时也广泛地被用于检测大的CNV
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327231035464-20210327231235820.png)
 
 <p align="center"><a>关注一下，帮我抓个鱼再走呗~</p>
-![](http://image.fungenomics.com/%E7%8C%AB%E6%8A%93%E9%B1%BC.gif)
+
+![](https://static.fungenomics.com/images/2021/03/%E7%8C%AB%E6%8A%93%E9%B1%BC-20210327231035746-20210327231236235.gif)
+
 <p align="center"><a>图片来源：giphy.com</p>
 
 ***
@@ -215,3 +233,4 @@ CNVnator使用的是第一种策略，同时也广泛地被用于检测大的CNV
 在这里你可以结识到全国优秀的基因组学和生物信息学专家，同时可以分享你的经验、见解和思考，有问题也可以向我提问和圈里的星友们提问。
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://wx.zsxq.com/mweb/views/joingroup/join_group.html?group_id=518881585444&secret=vcdvs4rdpst7stq4wcvqmlwvogc0ssbn&user_id=28821152428221)
+

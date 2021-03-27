@@ -2,20 +2,22 @@
 title: '如何使用Shapeit2对人类基因组数据进行phasing'
 date: 2018-06-10 01:00:00+0800
 description: Shapeit2 教程
-image: http://image.fungenomics.com/Van_Gogh_-_Starry_Night.jpg
+image: https://static.fungenomics.com/images/2021/03/Van_Gogh_-_Starry_Night.jpg
 categories:
     - phasing
 tags:
     - shapeit2
+
+
 ---
 
-![](http://image.fungenomics.com/Van_Gogh_-_Starry_Night.jpg)
+
 
 在上一篇文章中，分享了有关[基因组Phasing的原理](http://mp.weixin.qq.com/s?__biz=MzAxOTUxOTM0Nw==&mid=2649798506&idx=1&sn=773a7db5dfd002c53fead86625266af5&chksm=83c1d576b4b65c6057f93a00d62ea41364ccdf53429b1820442f5855a104dde68f4325376722&scene=21#wechat_redirect)，一共有三种，分别是：家系关系分型(Related individuals Phasing)、群体LD分型(LD Phasing)和物理分型(Physical Phasing)。目前用的比较多的就是基于群体LD的分型，也是我们接触比较多的Phasing分析（另外两种都对数据有一些额外的要求），同时也有比较好用的软件工具，比如很有代表性的Shapeit、beagle和STITCH。在这篇文章里，主要来介绍如何用Shapeit实现基因组的Phasing，另外两个如果有必要的话以后再来补充。
 
 Shapeit是一个专门用于推断基因组单体型（Phasing）的软件，它和beagle一样是当前用得最多的两个基于群体LD进行单倍型推断的软件，使用场景和算法彼此间大同小异。它目前的最新版是Shapeit3，但是常用的还是Shapeit2，也是在千人基因组项目中主要应用的版本。而Shapeit3主要是针对超大规模人群，一般是量级在几万人规模的基因组会更加合适，都是牛津大学的团队开发的，这个版本3可以说是为他们国家的GenomicsEngland计划定制的，这是一个要测10万英国人基因组的大型项目——也是目前世界上推得最快的国家级基因组计划。
 
-![](http://image.fungenomics.com/shapeit2.jpg)
+![](https://static.fungenomics.com/images/2021/03/shapeit2-20210327230633142.jpg)
 
 由于主要是说实操，所以这篇文章的内容比较简单，有关Phasing的原理和意义都在[上一篇文章](http://mp.weixin.qq.com/s?__biz=MzAxOTUxOTM0Nw==&mid=2649798506&idx=1&sn=773a7db5dfd002c53fead86625266af5&chksm=83c1d576b4b65c6057f93a00d62ea41364ccdf53429b1820442f5855a104dde68f4325376722&scene=21#wechat_redirect)里仔细讲过了，所以本文篇幅也不长，旨在用具体的例子演示如何使用好这个工具完成基因组数据的Phasing，并构造出Reference panel的过程。
 
@@ -38,6 +40,7 @@ position COMBINED_rate(cM/Mb) Genetic_Map(cM) 35326 0.251801 0.000000
 43259 0.778280 0.004126
 44167 1.380848 0.004833
 ```
+
 以上，是genetic map文件中所看到的内容例子。格式上比较清晰，第一列是位点距离，也就是位点坐标之间的物理距离；第二列是重组率（通过大规模家系数据测量得到）；第三列就是Genetic map的数值，每一个位点都有一个值，计算公式是前一个位点的Genetic Map + physical_distance × recombination_rate。
 
 应该注意到的是，liftover之后，原来genetic map中两个位点之间的重组率（recombination rate）依然是不变的。这其实也很好理解，参考序列之所以需要升级，是因为旧版本的结果并非是百分百符合真实情形的，随着技术的进步，我们会不断去升级逼近真实的序列情况。但重组率是根据大规模家系数据的重组情况来计算的，它是真实情况反映出来的现象，因此即便参考序列版本改变了，它的值也不需要改变。但对于两个位点之间的物理距离（physical distance）来说就不同了，liftover之后，这个距离是有可能发生改变的。
@@ -52,6 +55,7 @@ position COMBINED_rate(cM/Mb) Genetic_Map(cM) 35326 0.251801 0.000000
 1030  1030-02  0  0  2
 1030  1030-06  1030-01  1030-02  1
 ```
+
 第一列是家系编号，每一个家系有一个唯一编号，可以我们自己人为设置；
 第二列是该样本的编号，如果该样本是家系中的小孩，那么需要分别在第三列和第四列中，给出他/她的父亲样本编号和母亲样本编号，而如果该样本是家系数据中的父母，则只需要用0填充即可，如上例子；
 第五列是性别信息，一般用1和2分别代表Male和Female；
@@ -119,6 +123,7 @@ time shapeit2 -convert \
  --output-vcf chr22.haps.vcf \
  --output-ref chr22.phased.hap chr22.phased.leg chr22.phased.sam && echo "** all done **"
 ```
+
 大家可能也注意到了，在以上输出的结果中，我设置了两个：--output-vcf和--output-ref。chr22.haps.vcf是Phasing之后的结果，它是一个群体级别的全基因组单体型集合，可以作为我们常说的Reference panel。不过用于Imputation的Reference panel除了这个VCF格式之外，还可以有其它格式，比如这里--output-ref的三个输出文件，也是常用的Reference panel文件。
 
 ## 小结
@@ -145,9 +150,10 @@ time shapeit2 -convert \
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230607059-20210327230633335.png)
 
 ***
+
 这是知识星球：『解螺旋技术交流圈』，是一个我与读者朋友们的私人朋友圈。我有9年前沿而完整的生物信息学、NGS领域的工作经历，在该领域发有多篇Nature级别的科学文章，我也希望借助这个知识星球把自己的一些微薄经验分享给更多对组学感兴趣的伙伴们。
 
 自从星球正式运行以来，已经过去了6个月，星球的成员也已经超过220人了。所分享的主题超过了500个，回答的问题超过了140个，精华70个。我在知识星球上留下的文字估计也已经超过10万字，加上大家的就更多了，相信接下来星球的内容一定还会不断丰富。另外，上周获得了知识星球官方评选的“最优质星球”优秀奖。

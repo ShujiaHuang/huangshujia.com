@@ -1,13 +1,16 @@
 ---
 title: '替换google字体，加快网站访问速度'
 date: 2015-01-07 01:00:00+0800
+image: https://static.fungenomics.com/images/2021/03/st.post.2015-01-07-font-face.png
 categories:
     - 博客搭建
 tag:
     - google
+
+
 ---
 
-![font log](http://image.fungenomics.com/st.post.2015-01-07-font-face.png)
+
 
 一段时间以来，这个博客的打开速度慢得出奇！本来只有很少的东西，ping的速度也在120ms左右，算是可以的了，怎么会这样！一开始我没有搞明白问题的根源。今天才突然醒悟到一定是google字体加载的问题！当时这个博客的主题是从[yihui](http://yihui.name/)和[Carl Chen](http://webfrogs.me/)那里抄来的（不用试了，这俩的页面是极难打开的了），因为懒，因为不认识网页语言，尤其是`css`，所以所有`.css`后缀什么的，我一概不去看！所以那几个css就成了我的一个暗区，现在问题很明显了，要修改的地方一定在那！目标锁定之后，那么着手处理吧！
 
@@ -21,4 +24,4 @@ tag:
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327223655692-20210327223725006.png)

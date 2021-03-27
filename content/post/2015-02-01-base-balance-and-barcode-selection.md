@@ -1,7 +1,7 @@
 ---
 title: '二代测序：碱基平衡性与barcode选择'
 date: 2015-02-01 01:00:00+0800
-image: http://image.fungenomics.com/st.post.Figure0.png
+image: https://static.fungenomics.com/images/2021/03/st.post.Figure2.jpg
 categories:
     - 生物信息
 tags:
@@ -9,16 +9,21 @@ tags:
     - 测序技术
     - 碱基平衡性
     - barcode
+
+
 ---
+
 
 
 这是转载过来的一篇文章，虽然基础，但却觉得是很重要的知识,所以便记录了下来，原始出处来自微信公众号“基因测序资讯AGCT”。
 
 ## 碱基平衡性
+
 ----
+
 碱基复杂度与碱基多样性是一个意思；复杂度高，碱基即平衡。低多样性(low diversity)即碱基不平衡，指碱基的组成太单纯了，种类少。碱基复杂度本来无关紧要，从前除了设计PCR的时候考虑高GC(GC-rich)以外，基本没人思考这个问题，没人觉得这是一个问题。随着Illumina的二代测序技术风靡全球，独占鳌头，这个不起眼的概念意外地变得重要起来。
 
-![Figure1](http://image.fungenomics.com/st.post.Figure1.jpg)
+![Figure1](https://static.fungenomics.com/images/2021/03/st.post.Figure1-20210327223916877.jpg)
 
 **一、概念**
 
@@ -36,7 +41,7 @@ DNA碱基有4种：AGCT。所以碱基最平衡的情况就是：%A=%G=%C=%T=25%
 
 **需要特别注意碱基复杂度的二代测序应用:**PCR产物测序，特别是用于鉴定细菌、真菌以及其他物种的16S rRNAPCR产物测序；小RNA测序；甲基化测序。
 
-![Figure2](http://image.fungenomics.com/st.post.Figure2.jpg)
+![Figure2](https://static.fungenomics.com/images/2021/03/st.post.Figure2-20210327223916955.jpg)
 
 **三、增加碱基复杂度的方法**
 
@@ -46,14 +51,17 @@ DNA碱基有4种：AGCT。所以碱基最平衡的情况就是：%A=%G=%C=%T=25%
 2. 如果没有其他文库，那么掺入人基因组DNA文库、人外显子组文库或者PhiX标准品。这些都是已知碱基平衡的。     
 
 引物：     
+
 3. 对于PCR产物来说，只要引物长度不同，就能自然错开，增加碱基复杂度。       
 4. 采用多对序列不同的引物来完成扩增，然后将产物混合在一起。     
 
 Barcodes：          
+
 5. 仔细挑选barcode组合，确保每个位置都有3-4种碱基且碱基分布均匀。
 
 ##barcode 选择
 ----
+
 很多情况下，我们需要把多个样本混合在一起，在同一个通道(lane)里完成测序。像转录组测序、miRNA测序、lncRNA测序、ChIP测序等等，通常每个样本所需要的数据量都比较少，远少于HiSeq一个通道的产出能力，混合样本是非常常见。以转录组测序为例，一个样本测序60 M reads (8G PF data) ，就能够满足绝大部分研究所需。而HiSeq2500-PE125的一条通道，使用V4试剂，数据产出>480 M reads。为了充分利用测序仪产能，节约成本，需要把7~8个RNA样本混合起来。
 
 为了能够把测序数据按样本分离（de-multiplexing），在构建文库(library)的时候，需要用不同的标签序列(index, 也叫barcode)对文库进行标记。只有文库作了记号，数据才能区分。
@@ -63,8 +71,8 @@ Barcode的选择是一门技术活。如果barcode组合不佳，标签序列测
 **一、如何判断barcode组合好坏**
 
 1. 碱基平衡。好的barcode组合必须是“4种碱基达到平衡”的，或者说碱基复杂度高。具体就是：   
-a. 在一组barcode的每一个位置，同时存在A、G、C、T四种碱基，不缺少任何一种碱基；    
-b. 这4种碱基的比例接近，最好各1/4，分别为25%左右，没有任何一种碱基特别多或者特别少。  
+   a. 在一组barcode的每一个位置，同时存在A、G、C、T四种碱基，不缺少任何一种碱基；    
+   b. 这4种碱基的比例接近，最好各1/4，分别为25%左右，没有任何一种碱基特别多或者特别少。  
 
 2. 激光平衡。 受客观条件限制
 
@@ -82,22 +90,22 @@ b.有些barcode已经被其他样本占用，导致可选的余地受限制，�
 
 Illumina推荐的12个样本barcode组合如下。 
 
-编号|序列
-:---:|:---:
-01|ATC ACG
-02|CGA TGT
-03|TTA GGC
-04|TGA CCA
-05|ACA GTG
-06|GCC AAT
-07|CAG ATC
-08|ACT TGA
-09|GAT CAG
-10|TAG CTT
-11|GGC TAC
-12|CTT GTA
+| 编号 |  序列   |
+| :--: | :-----: |
+|  01  | ATC ACG |
+|  02  | CGA TGT |
+|  03  | TTA GGC |
+|  04  | TGA CCA |
+|  05  | ACA GTG |
+|  06  | GCC AAT |
+|  07  | CAG ATC |
+|  08  | ACT TGA |
+|  09  | GAT CAG |
+|  10  | TAG CTT |
+|  11  | GGC TAC |
+|  12  | CTT GTA |
 
-![Figure 3](http://image.fungenomics.com/st.post.Figure3.png)
+![Figure 3](https://static.fungenomics.com/images/2021/03/st.post.Figure3-20210327223917004.png)
 
 以第一个位置（纵列）为例，**A:G:C:T=3:3:3:3=1:1:1:1**。实际上，该barcode组合每个位置的碱基比例都接近**1:1**，碱基平衡度近乎完美。
 
@@ -174,8 +182,7 @@ b. 排除QV值低的barcode碱基后，其余质量好的barcode碱基仍然足�
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
-
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327223834130-20210327223917248.png)
 
 
 

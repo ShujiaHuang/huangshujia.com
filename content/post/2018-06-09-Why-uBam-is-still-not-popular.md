@@ -1,15 +1,17 @@
 ---
 title: '为什么uBAM迟迟无法流行起来'
 date: 2018-06-09 01:00:00+0800
-image: http://image.fungenomics.com/bam-ex.jpg
+image: https://static.fungenomics.com/images/2021/03/bam-ex-20210327230528877.jpg
 categories:
     - 生物信息
     - 基因组学
 tags:
     - BAM
+
+
 ---
 
-![](http://image.fungenomics.com/bam-ex.jpg)
+
 
 **uBAM就是非比对的BAM文件，**fastq可以通过picard这个工具将其转为这个格式。
 
@@ -55,7 +57,8 @@ tags:
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230505192-20210327230529031.png)
+
 ***
 
 这是知识星球：『解螺旋技术交流圈』，是一个我与读者朋友们的私人朋友圈。我有9年前沿而完整的生物信息学、NGS领域的工作经历，在该领域发有多篇Nature级别的科学文章，我也希望借助这个知识星球把自己的一些微薄经验分享给更多对组学感兴趣的伙伴们。

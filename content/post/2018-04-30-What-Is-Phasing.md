@@ -1,15 +1,15 @@
 ---
 title: '人类基因组的Phasing原理是什么？'
 date: 2018-04-30 01:00:00+0800
-image: http://image.fungenomics.com/phasing_cover.jpg
+image: https://static.fungenomics.com/images/2021/03/phasing_cover.jpg
 categories:
     - 生物信息
     - 基因组学
 tags:
     - Phasing
----
 
-![ ](http://image.fungenomics.com/phasing_cover.jpg)
+
+---
 
 ## 什么是Phasing？
 
@@ -17,7 +17,8 @@ Phasing，或者说Genotype Phasing，它的中文名有很多：基因定相、
 
 现在流行的NGS测序技术，都是把序列打乱混在一起测序的，测完之后，我们是无法直接区分这些序列中哪一个是父源，哪一个是母源的。我们通常都只是检测出基因组上有哪些变异，以及这些变异的碱基组成（纯合、杂合），也就是平时所说的基因型（Genotype）。只有经过Phasing，才能够实现这个区分（图1）。
 
-![图1](http://image.fungenomics.com/phasing_1.png)
+![图1](https://static.fungenomics.com/images/2021/03/phasing_1-20210327230135280.png)
+
 <p align="center"><a>图1. 变异位点经过Phasing和不经过Phasing的示意图。右上图代表通常的Genotype，右下图代表Phasing之后的情况，实现了亲本的区分。</a></p> 
 
 ## 为什么要Phasing
@@ -42,7 +43,8 @@ Phasing的方法总结起来主要有三个：**家系分型(Related individuals
 
 **目前，基因定相最准确的方法是利用家系数据来实现。**具体来说，就是除了被研究的这个个体之外，同时对其父亲和母亲的基因组进行测序。有了这三个人的数据之后，就可以很容易地区分出这个样本的两个单倍体。为了便于理解，我打个比方，比如我们知道他/她的基因组某一个位置上的基因型是AB，而父亲的基因型是AA，母亲的基因型是BB，那么我们就可以清楚地知道他/她这个基因上的A是来自于父亲染色体，而B则是属于母亲染色体的，更多的具体情况可以参看下面这个示意图。
 
-![图2. 家系数据实现对子/女基因组的Phasing示意图](http://image.fungenomics.com/phasing_2.png)
+![图2. 家系数据实现对子/女基因组的Phasing示意图](https://static.fungenomics.com/images/2021/03/phasing_2-20210327230135296.png)
+
 <p align="center"><a>图2. 家系数据实现对子/女基因组的Phasing示意图</a></p> 
 
 这个方法的一大优点就是定相（Phasing）的过程 **非常直接、简单**，不需要进行复杂的统计学计算，就可以准确地实现长距离的定相，并且还能够知道每一个基因型的亲本来源到底是什么，比如在上面的例子中，我们可以知道A和B分别属于父本和母本（如上图）。**这个亲本来源的问题对于研究或者治疗许多复杂疾病的意义是十分重大的，**比如最近发表在《Science》上的一个研究中发现，影响小孩发生孤独症（也称自闭症）的基因突变中父亲的影响更大，除此之外还有很多母源或者父源性的疾病（这里面其实还涉及到Transmitted和Non-Transmitted Chromosome的问题），这些类型的结果如果没有家系的数据是无法得出的。
@@ -51,14 +53,15 @@ Phasing的方法总结起来主要有三个：**家系分型(Related individuals
 
 家系Phasing的这个方法虽有很多难以比拟的好处，但也有一些比较明显的缺点。比如，我们为了对这个人进行定相分析，就不得不多测另外两个人的基因组。这一方面大大增加了原有的成本；另一方面则是有些人由于各种各样的原因已经难以获取其双亲的样本数据了；另外，**这个方法其实也无法完成对该个体所有变异的完全定相，**比如当碰到父、母和子/女都是杂合突变的位点时，就无法区分了。这样的位点虽然在基因组上不是最主要的，但是也大约占到了总变异位点数的13%左右，或者说有大约五分之一的杂合突变位点（注意只是占所有杂合的比例）是这种不可Phasing的状态，详细的分类情况可以参考下表：
 
-![表1. 能够被Phasing和不能够被Phasing的SNPs位点分类](http://image.fungenomics.com/phasing_3.png)
+![表1. 能够被Phasing和不能够被Phasing的SNPs位点分类](https://static.fungenomics.com/images/2021/03/phasing_3-20210327230135369.png)
+
 <p align="center"><a>表1. 能够被Phasing和不能够被Phasing的SNPs位点分类</a></p> 
 
 **LD Phasing是另外一个非常常用的基因定相方法，**它是利用群体中大量无血缘关系的个体，依据基本的连锁不平衡(Linkage disequilibrium，LD)遗传原理和相关数学模型，推断群体中每个个体的单倍体的方法，因此它也是计算量最大的一个。
 
 我们知道人这个物种在减数分裂产生生殖细胞的过程中姐妹染色单体会发生重组，这个重组的发生率每代大约是10^-8，虽然很低，但是随着一代接一代不断地繁衍下去，经过足够长的时间之后（比如说 **无穷！无穷！无穷！**）。
 
-![你这是在逗我吗](http://image.fungenomics.com/你这是在逗我吗.png)
+![你这是在逗我吗](https://static.fungenomics.com/images/2021/03/%E4%BD%A0%E8%BF%99%E6%98%AF%E5%9C%A8%E9%80%97%E6%88%91%E5%90%97-20210327230135386.png)
 
 那么从理论上来讲，来自同一祖先的两条染色就会被均匀地重组一个遍。然而，遗憾的是我们现代人还是 **Too Youg Too Simple！**从最早的证据来看现代人的共同祖先大概起源于15万-19万年前（第三次走出非洲的时间），所以至今我们也不过才经历了6,000-7,600代而已。
 
@@ -82,12 +85,14 @@ Phasing的方法总结起来主要有三个：**家系分型(Related individuals
 
 这也是我（矿工）在华大基因深度负责的第一个研究课题（我的博士论文也是基于该课题）。当时这一块还比较空白，第三代测序技术也还不是很成熟，当时为了获得长序列，我们采用了基于Fosmid构建大长度克隆片段然后进行二代测序并组装的方法（如下图），成果发表在2015年的《Nature Biotechnology》上，我也是共同第一作者。
 
-![图3. 基于Fosmid和二代测序技术相结合的de novo Phasing方法](http://image.fungenomics.com/phasing_4.png)
+![图3. 基于Fosmid和二代测序技术相结合的de novo Phasing方法](https://static.fungenomics.com/images/2021/03/phasing_4-20210327230135470.png)
+
 <p align="center"><a>图3. 基于Fosmid和二代测序技术相结合的de novo Phasing方法</a></p> 
 
 ﻿由于我当时已经为课题中的一些细节写过两篇文章，因此这里就不再展开，感兴趣的话你也可以查看本文最后的推荐阅读，这里我只介绍物理定相的基本原理。总的来说，要把局部的小片段连成一个大片段，从而实现Phasing，这个过程要做的好就需要充分借助小片段上的杂合SNPs作为区分的标记。通过每个杂合位点上各个小片段中所含碱基的异同和彼此之间的重叠关系，我们可以把绝大部分的小片段分成两类，然后通过一系列的连接、二分图构建、二分图求解和重新组装等方法，最后就可以把小片段逐步连成大片段，从而构建出单倍体了，如下图（*请横着看*）。
 
-![图4.物理定相示意图](http://image.fungenomics.com/phasing_5.png)
+![图4.物理定相示意图](https://static.fungenomics.com/images/2021/03/phasing_5-20210327230135548.png)
+
 <p align="center"><a>图4.物理定相示意图</a></p> 
 
 物理定相的方法，往往要求每个片段中都能包含较多的杂合SNPs位点，但由于人类基因组中杂合SNPs位点之间的距离普遍在1.5Kbp左右——还是比较长的，因此测序片段本身就要足够长，这就需要使用包括三代测序技术在内的一些测序方法，因此它的成本会比较高。我目前所知道的在Physica Phasing方面做得比较好的机构中，除了我们自己当时的小组之外，还有德国的马克普朗克研究所（ Max Planck Institute）Margret教授团队和华大基因Brock Peters博士所在的研究组，他们建立了LFR的实验和信息方法。
@@ -99,7 +104,7 @@ Phasing的方法总结起来主要有三个：**家系分型(Related individuals
 *   第一，能够被Phasing的变异位点越多越好；
 *   第二，正确被Phasing的位点数占比越高越好。
 
-* * *
+*   * *
 
 ## 推荐阅读
 
@@ -109,11 +114,11 @@ Phasing的方法总结起来主要有三个：**家系分型(Related individuals
 *   [GATK4.0和全基因组数据分析实践（下）](http://mp.weixin.qq.com/s?__biz=MzAxOTUxOTM0Nw==&mid=2649798455&idx=1&sn=67a7407980a57ce138948eb46992b603&chksm=83c1d52bb4b65c3dde31df94e9686654bf616166c7311b531213ebf0010f67a32ce827e677b1&scene=21#wechat_redirect)
 *   [该如何自学入门生物信息学](http://mp.weixin.qq.com/s?__biz=MzAxOTUxOTM0Nw==&mid=2649798366&idx=1&sn=b545fcea7f82839fa87e9d9e472d1e72&chksm=83c1d4c2b4b65dd4843250c307969ada96c4039f4f528c034620d25b78d8beba2f9cf924bb8a&scene=21#wechat_redirect)
 
-* * *
+*   * *
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230051357-20210327230135701.png)
 
 
 这是我的知识星球：解螺旋技术交流圈，是一个与读者朋友们的私人朋友圈，欢迎你的加入。我有9年前沿而完整的生物信息学、NGS领域的工作经历，在该领域发有多篇Nature级别的科学文章。

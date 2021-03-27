@@ -5,6 +5,8 @@ categories:
     - 编程技术
 tags:
     - github
+
+
 ---
 
 同一台电脑，或者同一个（大型机）服务器账号下要使用多个Github账号，该咋办？
@@ -27,11 +29,13 @@ Enter filein which to save the key (~/.ssh/id_rsa): id_rsa_hshujia
 因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：
 
 添加至SSH agent
+
 ```bash
 ssh-add  ~/.ssh/id_rsa_hshujia
 ```
 
 如果出现Could not open a connection to your authentication agent的错误，就试着用以下命令：
+
 ```bash
 ssh-agent bash && ssh-add ~/.ssh/id_rsa_hshujia
 ```
@@ -39,10 +43,12 @@ ssh-agent bash && ssh-add ~/.ssh/id_rsa_hshujia
 **3、修改config文件**
 
 在~/.ssh目录下找到config文件，vi打开进行编辑，如果没有就创建：
+
 ```bash
 # 创建config
 touch config  
 ```
+
 然后按如下形式修改：
 
 ```bash
@@ -64,7 +70,7 @@ Host hshujia.github.com
 其规则就是：从上至下读取config的内容，在每个Host下寻找对应的私钥。这里将GitHub SSH仓库地址中的***git@github.com***替换成新建的Host别名如：***hshujia.github.com***，那么原地址是：**git@github.com**:user/Mywork.git，替换后应该是：**git@hshujia.github.com**:user/Mywork.git.
 
 以下是我在（大型机）服务器上config文件的具体内容：
-![My config](http://image.fungenomics.com/fg.post.2014-08-30-Fig1.jpg-blog.fungenomics.com)
+![My config](https://static.fungenomics.com/images/2021/03/fg.post.2014-08-30-Fig1.jpg-blog.fungenomics-20210327223424453.com)
 
 **4、打开新生成的~/.ssh/id_rsa_hshujia.pub文件，将里面的内容添加到GitHub后台，此处默认大家懂得如何添加，就不详述了。**
 
@@ -112,4 +118,4 @@ git push -u origin master
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327223413233-20210327223424681.png)

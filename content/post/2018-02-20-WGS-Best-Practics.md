@@ -1,7 +1,7 @@
 ---
 title: 'GATK4.0和全基因组数据分析实践（上）'
 date: 2018-02-20 01:00:00+0800
-image: http://image.fungenomics.com/hgp.jpg
+image: https://static.fungenomics.com/images/2021/03/hgp.jpg
 categories:
     - 生物信息
     - 基因组学
@@ -9,9 +9,9 @@ tags:
     - NGS
     - WGS
     - 流程
----
 
-![HGP](http://image.fungenomics.com/hgp.jpg)
+
+---
 
 ## 前言
 
@@ -51,7 +51,7 @@ output只存放结果数据，它是由input和bin中的数据和程序流程生
 
 人类基因组数据很大，参考序列长度是3Gb。而一个人的高深度测序数据往往是这个数字的30倍——100Gb。如果直接用这样的数据来完成本文的分析，那么许多同学需要下载大量的原始数据。除了下载时间很长之外，如果没有合适的集群，只是在自己的桌面电脑上干这样的事情，那么硬盘空间也将很快不够用。而且，要在单机电脑上完成这样一个高深度WGS数据的分析，处理对机器性能有要求之后，跑起来也需要连续花上差不多140个小时——相信大家都等不起呀。
 
-![我已经等不及了](http://image.fungenomics.com/cannot_waiting.png)
+![我已经等不及了](https://static.fungenomics.com/images/2021/03/cannot_waiting-20210327225635149.png)
 
 因此，为了解决这个问题，我找了E.coli K12（一种实验用的大肠杆菌）的数据作为代替，用来演示 **数据比对和变异检测这两个最消耗计算资源和存储空间的步骤**。E.coli K12的特点是数据很小，它的基因组长度只有4.6Mb，很适合大家用来快速学习WGS的数据分析，遇到人类的数据时，再做替换就行了。
 
@@ -113,7 +113,7 @@ TCTATTCCACGTCGTCGAGCG
 
 在NCBI给出的信息页面中，我们可以清楚地看到这个数据的大小（如下图）——差不多200MB，一般家庭网速也能够较快下载完成。
 
-![下载测序数据](http://image.fungenomics.com/srr1770414.png)
+![下载测序数据](https://static.fungenomics.com/images/2021/03/srr1770414-20210327225635209.png)
 
 从NCBI上下载下来的测序数据，不是我们熟悉的fastq格式，而是SRA（一种NCBI自己设计的测序数据存储格式，具较高的压缩率），我们需要对其进行转换，下文详述。现在我们先下载，有两个下载方式（我在这里告诉大家的方法同样适用于其他类型的数据），第一个是如上面所说搜索到SRR1770413这个数据的ftq地址，然后直接在命令行中执行wget进行下载，如下：
 
@@ -123,7 +123,7 @@ $ wget ftp://ftp-trace.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR1
 
 **注意，下载下来的这个SRA文件虽然只有一份，但是里面其实存了read1和read2的测序数据，我们要把它解出来，转换成为我们所需的fastq格式。**这个时候，我们就需要用到NCBI的官方工具包[sratoolkit](https://github.com/ncbi/sra-tools/wiki/Downloads)，大家下载对应系统的版本，直接解压之后就可以使用了。
 
-![sratoolkit工具包](http://image.fungenomics.com/sratoolkit.png)
+![sratoolkit工具包](https://static.fungenomics.com/images/2021/03/sratoolkit-20210327225635263.png)
 
 sratoolkit是一个工具包，所有的执行程序都在它解压后的bin文件夹下，我们要把SRA转换为fastq，只需直接通过工具包中的fastq-dump即可完成。
 
@@ -196,6 +196,7 @@ E.coli_K12_MG1655.fa.pac
 E.coli_K12_MG1655.fa.sa
 
 ```
+
 现在我们使用bwa完成比对，用samtools完成BAM格式转换、排序并标记PCR重复序列。步骤分解如下：
 
 ```bash
@@ -317,7 +318,8 @@ bgzip压缩完成之后，原来的VCF文件会被自动删除。
 至此，这个篇文章的上半部分就到此为止了。除了那些重要的内容之外，在上文中，你会看到我反复提到了创建“索引”这个事情，比如为fasta，为BAM，为VCF。我为什么非要反复强调这个事情不可呢？因为我发现许多初学者并不知道索引的作用，当被问到如何从巨大的比对文件或者变异文件中提取某个信息时，总是要走弯路——努力写程序去提取，既慢又费力，结果还不一定好，甚至有些有一定经验的同学也不知道使用bgzip和tabix的好处，因此我才反复在文章里提及。
 
 ------------
+
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225603309-20210327225635708.png)
 

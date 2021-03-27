@@ -1,16 +1,18 @@
 ---
 title: '我应该如何正确设置GATK VQSR的模型训练参数 |《解螺旋技术交流圈》精华第4期'
 date: 2018-07-29 01:00:00+0800
-image: http://image.fungenomics.com/bird-s-eye-view-boats-colors.jpg
+image: https://static.fungenomics.com/images/2021/03/bird-s-eye-view-boats-colors.jpg
 categories:
     - 生物信息
     - 基因组学
     - 《解螺旋技术交流圈》精华
 tags:
     - GATK
+
+
 ---
 
-![](http://image.fungenomics.com/bird-s-eye-view-boats-colors.jpg)
+![](https://static.fungenomics.com/images/2021/03/bird-s-eye-view-boats-colors-20210327231319792.jpg)
 
 变异的质控，是我们在得到变异数据之后，接下来最重要的一个步骤。通常我们都是使用GATK VQSR模块来完成这个事情，关于VQSR的基本原理我在[这篇文章](https://mp.weixin.qq.com/s/HeIhMeA6GNboQQl1b79arg)中有写，但暂时不算详细。下面是大家经常都会用到的VQSR基本命令（以GATK4为例）：
 
@@ -96,7 +98,7 @@ time $gatk ApplyVQSR \
 
 **第一个是HapMap**，它来自国际人类单倍体型图计划，HapMap的名字也是源自于此。这个项目刚启动之时，只有270样本，其中有60个家系。项目一共有三期，到第三期HapMap3的时候这个数据已经扩增到1301个样本了，其中有部分样本和千人基因组项目有重叠。**由于这个数据集包含了大量家系数据，并且有非常严格的质控和严密的实验验证，因此它的准确性是目前公认最高的。**
 
-![](http://image.fungenomics.com/hapmap.jpg)
+![](https://static.fungenomics.com/images/2021/03/hapmap-20210327231319876.jpg)
 
 所以VQSR进行质控模型训练的时候，会将其作为一个很重要的训练集（training=true）。它的权重也会被设置得很高，比如在WGS数据分析中常常设为prior=15——这里的Prior是Prior likelihood的Phred-scale，我们如果把15转换为likelihood，那么就是0.96838。此外，由于它的高准确性，通常还将作为模型验证的一个真集数据（truth=true）。
 
@@ -104,7 +106,7 @@ time $gatk ApplyVQSR \
 
 **第三个是1000G，**这个数据从名字看我们也很熟悉，它就是千人基因组计划（1000 genomes project）质控后的变异数据，目前也是第三期，一共包含了2504个人的数据。通常来说质控后，它包含的绝大部分都是真实的变异，但由于没办法做全面的实验验证，并不能排除含有少部分假阳的结果。所以模型训练时给的权重虽然比较高——prior=10(likelihood为0.9)，但是一般就不作为模型验证的真集数据了，即truth=false。
 
-﻿﻿![](http://image.fungenomics.com/1kgp_nature.jpeg)
+﻿﻿![](https://static.fungenomics.com/images/2021/03/1kgp_nature-20210327231319911.jpeg)
 
 **第四个是dbSNP。**说到dbSNP，**这是一个绝对不可以作为训练集位点的数据——太脏了**，为什么这么说呢？因为，**dbSNP收集的数据，实际都是研究者们发表了相关文章提交上来的变异，这些变异很多是没做过严格验证的，很多甚至还是假的，在没被反复验证之前，是不可信的。**因此，不会把它们作为模型的训练集，更不会把它作为真集看待（training=false,truth=false），权重也一般设置得很低，比如这里是prior=2（差不多才0.37）。dbSNP的唯一作用就是用于标注我们的变异集中哪些是已经在其它研究中出现过的——即属于已经被发现过的（已知）变异，给这些已知的变异位点标上RS id。
 
@@ -143,7 +145,7 @@ GATK VQSR在执行的时候要基于全基因组的所有变异数据，而不�
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327231257267-20210327231320089.png)
 
 ***
 

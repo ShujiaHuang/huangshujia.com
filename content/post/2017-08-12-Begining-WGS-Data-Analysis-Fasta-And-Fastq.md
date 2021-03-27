@@ -1,7 +1,7 @@
 ---
 title: '从零开始完整学习全基因组测序（WGS）数据分析：第2节 FASTA和FASTQ'
 date: 2017-08-12 01:00:00+0800
-image: http://image.fungenomics.com/wgs_s2_cover.png
+image: https://static.fungenomics.com/images/2021/03/wgs_s2_cover.png
 description: Fasta 序列存储格式
 categories:
     - 生物信息
@@ -10,9 +10,11 @@ tags:
     - NGS
     - WGS
     - 数据格式
+
+
 ---
 
-![wgs_02_cover](http://image.fungenomics.com/wgs_s2_cover.png)
+![wgs_02_cover](https://static.fungenomics.com/images/2021/03/wgs_s2_cover-20210327225044037.png)
 
 在WGS数据的分析过程中，我们会接触到许多生物信息学/基因组学领域所特有的数据文件和它们特殊的格式，在这一节中将要介绍的FASTA和FASTQ便是其中之一二。这是我们存储核苷酸序列信息（就是DNA序列）或者蛋白质序列信息最常使用的两种 **文本文件**，虽然看起来名字有些古怪，但它们完全是纯文本文件（如同.txt）！名字的发音分别是fast-A和fast-Q。这一篇文章内容虽然比较简单，但还是比较长，我在这里详细介绍了这两类文件的格式特点和一些在分析的时候需要考虑的地方。
 
@@ -26,7 +28,7 @@ tags:
 
 这里再特别强调三个字：有！顺！序！说的是从1开始一个个按顺序往下排列的意思——这不也正是序列这个词的含义！
 
-![1](http://image.fungenomics.com/interesting.png)
+![1](https://static.fungenomics.com/images/2021/03/interesting-20210327225044101.png)
 
 因此，我们可以通过数个数，就知道某个DNA碱基在某个基因组上的准确位置，这个位置会用所在序列的名字和所在位置来表达，比如基因数据比对的结果（下一篇会介绍），方便后续数据分析。
 
@@ -110,7 +112,7 @@ IIIIIIIIIIIIIIIHHHHHHFFFFFFEECCCCBCECCCCCCCCCCCCCCCC
 
 那么，重点说一下什么是质量值？顾名思义，碱基质量值就是能够用来定量描述碱基 **好坏程度**的一个数值。它该如何才能恰当地描述这个结果呢？我们试想一下，如果测序测得越准确，这个碱基的质量就应该越高；反之，测得越不准确，质量值就应该越低。也就是说可以利用碱基被测错的概率来描述它的质量值，错误率越低，质量值就越高！如下图，红线代表错误率，蓝线代表质量值，这便是我们希望达到的效果：
 
-![测序错误率](http://image.fungenomics.com/fq_seqerror.png)
+![测序错误率](https://static.fungenomics.com/images/2021/03/fq_seqerror-20210327225044133.png)
 
 这里我们假定碱基的测序错误率为: $${P}\_{error}$$质量值为Q，它们之间的关系如下：
 
@@ -119,15 +121,15 @@ $$Q=-10log\_{10}{P}\_{error}$$
 即，**质量值是测序错误率的对数（10为底数）乘以-10（并取整）**。这个公式也是目前测序质量值的计算公式，它非常简单，p_error的值和测序时的多个因素有关，体现为测序图像数据点的清晰程度，并由测序过程中的base calling 算法计算出来；公式右边的Q我们称之为Phred quality score，就是用它来描述测序碱基的靠谱程度。比如，如果该碱基的测序错误率是0.01，那么质量值就是20（俗称Q20），如果是0.001，那么质量值就是30（俗称Q30）。Q20和Q30的比例常常被我们用来评价某次测序结果的好坏，比例越高就越好。下面我也详细给出一个表，更进一步地解释质量值高低的含义：
 
 
-|测序平台|ASCII码范围 |下限|质量值类型|质量值范围|备注| 
-|------------------|----|-------|--------|----|
-|Sanger, Illumina(版本1.8及以上)|33-126|33|Phred quality score|0-93|现在沿用|
-|Solexa, Illumina早期版本(<1.3版本)|59-126|64|Solexa quality score|5-62|  除了已测序数据之外，不再使用|
-|Illumina(版本1.3-1.7)|64-126|64|Phred quality score|0-62|  除了已测序数据之外，不再使用|
+| 测序平台                           | ASCII码范围 | 下限 | 质量值类型           | 质量值范围 | 备注                         |
+| ---------------------------------- | ----------- | ---- | -------------------- | ---------- | ---------------------------- |
+| Sanger, Illumina(版本1.8及以上)    | 33-126      | 33   | Phred quality score  | 0-93       | 现在沿用                     |
+| Solexa, Illumina早期版本(<1.3版本) | 59-126      | 64   | Solexa quality score | 5-62       | 除了已测序数据之外，不再使用 |
+| Illumina(版本1.3-1.7)              | 64-126      | 64   | Phred quality score  | 0-62       | 除了已测序数据之外，不再使用 |
 
 现在回过头来说说为什么要用ASCII码来代表，直接用数字不行吗？行！但很难看，而且数字不能直接连起来，还得在中间加一个分隔符，长度也对不齐，还占空间，又不符合美学设计，真！麻！烦！
 
-![2](http://image.fungenomics.com/tired.png)
+![2](https://static.fungenomics.com/images/2021/03/tired-20210327225044201.png)
 
 因此，也是为了格式存储以及处理时的方便，这个数字被直接转换成了ASCII码，并与第二行的read序列构成一一对应的关系——每一个ASCII码都和它正上面的碱基对应，这就很完美。
 
@@ -136,14 +138,14 @@ $$Q=-10log\_{10}{P}\_{error}$$
 
 但一开始对于要加哪一个整数，并没有什么指导标准，这就导致了在刚开始的时候，不同的测序平台加的整数也不同，总的来说有以下3种质量体系，演变到现在也基本只剩下第一种了，如下表：
 
-|Phred Quality Score|Probability of incorrect base call|Base call accuracy|
-|-------------------|----------------------------------|------------------|
-|         10        |              1 in 10             |        90%       |
-|         20        |              1 in 100            |        99%       |
-|         30        |              1 in 1000           |        99.9%     |
-|         40        |              1 in 10,000         |        99.99%    |
-|         50        |              1 in 100,000        |        99.999%   |
-|         60        |              1 in 1,000,000      |        99.9999%  |
+| Phred Quality Score | Probability of incorrect base call | Base call accuracy |
+| ------------------- | ---------------------------------- | ------------------ |
+| 10                  | 1 in 10                            | 90%                |
+| 20                  | 1 in 100                           | 99%                |
+| 30                  | 1 in 1000                          | 99.9%              |
+| 40                  | 1 in 10,000                        | 99.99%             |
+| 50                  | 1 in 100,000                       | 99.999%            |
+| 60                  | 1 in 1,000,000                     | 99.9999%           |
 
 从表中可以看到下限有33和64两个值，我们把加33的的质量值体系称之为Phred33，加64的称之为Phred64（Solexa的除外，它叫Solexa64）。不过，现在一般都是使用Phred33这个体系，而且33也恰好是ASCII的第一个可见字符（'!'），完美+2。
 
@@ -207,7 +209,7 @@ Out[3]:
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225023590-20210327225044443.png)
 
 
 

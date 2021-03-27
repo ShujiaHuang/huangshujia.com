@@ -1,17 +1,19 @@
 ---
 title: '一篇文章说清楚什么是“插入片段”？'
 date: 2018-08-11 01:00:00+0800
-image: http://image.fungenomics.com/insert-cover.jpeg
+image: https://static.fungenomics.com/images/2021/03/insert-cover.jpeg
 categories:
     - 生物信息
     - 基因组学
+
+
 ---
 
-![](http://image.fungenomics.com/insert-cover.jpeg)
+
 
 这篇文章源自上周知识星球星友的一个提问。﻿
 
-![](http://image.fungenomics.com/fig1.insert_question.png)
+![](https://static.fungenomics.com/images/2021/03/fig1.insert_question-20210327231418166.png)
 
 当时星友感兴趣的地方在于Insertsize可以有什么用，后来知道他（她）其实真正想搞明白的是：插入片段到底是什么。
 
@@ -30,7 +32,8 @@ categories:
 1. 利用超声或者酶切技术把那些从细胞中提取出来的一堆乱糟糟DNA进行打断，然后末端修复，把分叉的末端序列修平；
 2. 电场跑胶，专业术语是凝胶电泳——DNA分子在电场里“游泳”。由于不同长度的DNA分子片段所带电量（它们都带负电荷）不同，那么在电场作用下，有些就跑得快有些就慢，一段时间之后不同长度的DNA片段就在电场中分开了，如下图；
 
-![](http://image.fungenomics.com/fig1.pcr_marker.png)
+![](https://static.fungenomics.com/images/2021/03/fig1.pcr_marker-20210327231418183.png)
+
 ﻿﻿<p align="center"><a>图1. 凝胶电泳使不同长度的DNA片段实现分离</a></p>
 
 3. 在2的基础上，挑选出特定长度的DNA序列——比如我们挑选上图中400bp长度的序列，它们就是我们要测序的主体序列，也就是要被植入的“插入片段”。只不过在二代测序中，不是植入到大肠杆菌里了，而是在它们的两头分别加上测序用的接头（adapter），然后进行（PCR）序列扩增，最后再上机测序，这个加完接头之后的样子，如图2所示。
@@ -42,7 +45,8 @@ categories:
 
 当然测序接头的结构其实要比图中更复杂一点的，但在这里我为了表述上的方便就做了简化，只画作一个。
 
-![](http://image.fungenomics.com/fig2.insert.png)
+![](https://static.fungenomics.com/images/2021/03/fig2.insert-20210327231418206.png)
+
 <p align="center"><a>图2. 插入片段结构示意图</a></p>
 
 另外，中间浅蓝色插入片段的这一个序列，它的真实长度，我们其实是没办法精确知道的。因为我们没法直接去数这些片段上的碱基个数，只能通过测序。但二代短读长测序技术，又只能从这个淡蓝色片段的一个末端或者两个末端开始测，比如图中是Pair-End(PE)测序*，测的是两个末端，得到的序列是Read1和Read2，很多时候Read1+Read2的长度都是小于这个插入片段的长度的。在不测通的情况下，它中间一定有一段不明长度的序列我们无法测到，这段不被测到的序列有时被称为Inner序列，它的长度是Read1和Read2相距的距离（图2中红色双箭头所指的序列）。
@@ -53,13 +57,15 @@ categories:
 
 Read1和Read2有时是会发生重叠的，这个重叠并不是指两个序列相连了（测序的时候，Read1和Read2是分开生成的，而不是两端同时开始测，所以不可能相连），而是相互测到了对方覆盖的片段了，如下图3。这是怎么发生的呢？有两种情况会导致这个现象的发生：
 
-![](http://image.fungenomics.com/fig3.read_overlap.png)
+![](https://static.fungenomics.com/images/2021/03/fig3.read_overlap-20210327231418230.png)
+
 <p align="center"><a>图3. Read1和Read2由于插入片段长度过短，测序时出现相互重叠</a></p>
 
 * 第一，测序读长较长，比如MiSeq的测序读长可以到达250bp，PE测的话，Read1+Read2就达到500bp，如果我们的建库序列长度是400bp，那么就会被测通，而且中间有约100bp是Read1和Read2重叠测到的区域（图3中的红色Overlap区域）；
 * 第二，建库时带来的误差。虽然我们在构建测序文库的时候都希望能够挑选处理的插入片段，它们的长度能够基本一致，但其实是做不到的，一定存在偏差。有时建库质量较差的时候，偏差就更大了，比如下图是一个真实数据的插入片段长度分布图，这不是一个很好的建库结果，我们可以看到它的左端有一大段长度都在200bp以下，甚至还低至50bp。那么如果我们是100PE进行测序的话，这部分的序列也同样有重叠的现象发生。
 
-![](http://image.fungenomics.com/fig4.insert_sistribution.png)
+![](https://static.fungenomics.com/images/2021/03/fig4.insert_sistribution-20210327231418301.png)
+
 <p align="center"><a>图4. 插入片段长度分布</a></p>
 
 Read重叠会给我们的数据分析带来不利影响吗？基本不会，而且对于第二种情况，往往也还不需要做额外的处理，正常分析就好。对于第一种情况，很多时候是故意要这么设计的（当然不一定要用MiSEQ，其它的也行，只要调节好插入片段和Read读长即可）。在有些数据分析中，我们会故意挑选短的插入片段，确保Read1和2可以重叠，比如在基因组组装的场景中，设计梯度文库的时候，一般都会有一个小长度文库，目的就是把这个小长度文库的Read1和Read2连起来，合成一条超级Read，这样可以协助进行序列构建和补洞，把物种基因组装的更好。
@@ -72,9 +78,10 @@ Read重叠会给我们的数据分析带来不利影响吗？基本不会，而�
 
 这也是为什么接头序列一般都是出现在Read的末尾的原因，我们需要cut adapter也是这么来的。
 
-![](http://image.fungenomics.com/fig5.read_through.png)
+![](https://static.fungenomics.com/images/2021/03/fig5.read_through-20210327231418316.png)
+
 <p align="center"><a>图5. 插入片段较短，导致测通，read末端出现测序接头</a></p>
-﻿﻿
+
 ## 插入片段长度是否能反映测序质量？
 
 虽然，插入片段在跑胶之后选择出来时，其长度存在不可避免的误差，会有波动，甚至有时波动还不小，但它不能反映测序质量（这里排除meta-pair的情况）。因为测序质量并不直接受插入片段长度所影响，**而是受试剂、测序芯片、光学相机、机器运行情况、实验室环境（地震、曝晒）等更加复杂的系统和外部因素所决定的。**
@@ -83,7 +90,8 @@ Read重叠会给我们的数据分析带来不利影响吗？基本不会，而�
 
 虽然二代短读长测序技术，获得不了超长的Read读长，但是双末端测序(Pair-End)获得的Read1和Read2包含了三个非常有用的关系信息，分别是：彼此相连，距离和序列方向。这些信息是基因组变异检测特别是结构性变异检测的关键信号。我其实在《一篇文章说清楚基因组结构性变异检测的方法》中详细谈到了如何利用Read Pair(也就是PE信息)来进行变异检测的方法，这里就不再赘述了，大家如果不了解可以移步过去看看，总之围绕它可以检测多种不同类型的结构性变异如下：
 
-![](http://image.fungenomics.com/fig6.RP-detect-SVs.png)
+![](https://static.fungenomics.com/images/2021/03/fig6.RP-detect-SVs-20210327231418377.png)
+
 <p align="center"><a>图6. 利用RP所能检测的变异类型</a></p>
 
 ## 小结
@@ -106,7 +114,7 @@ Read重叠会给我们的数据分析带来不利影响吗？基本不会，而�
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327231345648-20210327231418677.png)
 
 ***
 
@@ -117,3 +125,4 @@ Read重叠会给我们的数据分析带来不利影响吗？基本不会，而�
 在这里你可以结识到全国优秀的基因组学和生物信息学专家，同时可以分享你的经验、见解和思考，有问题也可以向我提问和圈里的星友们提问。
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://wx.zsxq.com/mweb/views/joingroup/join_group.html?group_id=518881585444&secret=vcdvs4rdpst7stq4wcvqmlwvogc0ssbn&user_id=28821152428221)
+

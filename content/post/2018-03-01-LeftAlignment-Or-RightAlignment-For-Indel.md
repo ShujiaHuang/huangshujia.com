@@ -1,22 +1,24 @@
 ---
 title: '关于Indel，我该往左还是该往右'
 date: 2018-03-01 01:00:00+0800
-image: http://image.fungenomics.com/Left_or_right.jpg
+image: https://static.fungenomics.com/images/2021/03/Left_or_right.jpg
 categories:
     - 生物信息
     - 基因组学
 tags:
     - NGS
     - 变异检测
+
+
 ---
 
-![左和右](http://image.fungenomics.com/Left_or_right.jpg)
+
 
 实质上，两种做法都可以。但是在NGS数据分析中，约定俗成的做法是：左移（left alignment）！然而也有一种情况是例外，当变异使用的是HGVS规则命名的时候，它们却是右移（right alignment）！
 
 在探讨这个问题之前，我们来理解一下为什么Indel需要左移或者右移。
 
-![几米绘本](http://image.fungenomics.com/jimi.png)
+![几米绘本](https://static.fungenomics.com/images/2021/03/jimi-20210327225825714.png)
 
 首先，**会碰到这个问题的场景是我们需要比较多个不同VCF数据集中Indel结果是否一致的时候。**比如，需要把自己项目的VCF数据和标准集比较——这个标准集可以是1000 Genomes Variants（该公开数据集已经左移），也可以是GIAB（Genome In a Bottle）的数据集，也可以是医学检测报证做质评的标准集等等。这个时候我们需要统一Indel的坐标（特别是Deletion的坐标），这是需要「移」目的。
 
@@ -29,7 +31,7 @@ tags:
 
 比如下图，尽管这个区域中实际上只有一个Deletion，但是三次比对的结果，Deletion的断点都不一样，但是从比对结果看，它们的罚分却一模一样，根本无法区分！
 
-![比对懵圈](http://image.fungenomics.com/repeat_mapping.jpeg)
+![比对懵圈](https://static.fungenomics.com/images/2021/03/repeat_mapping-20210327225825743.jpeg)
 
 理解了上面这一点之后，我们就知道不能在不同数据集中随便对Indel进行直接比较了。我们需要先对这些变异进行规范化的处理（一般指左移），确保所有的Indel的断点都是开在同一个方向上的，用NGS的术语，管这个做法叫：Variant Normalization。
 
@@ -70,4 +72,4 @@ options : -o output VCF file [-]
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225805055-20210327225826042.png)

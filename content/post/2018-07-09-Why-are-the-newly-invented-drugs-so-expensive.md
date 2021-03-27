@@ -1,14 +1,16 @@
 ---
 title: '从《我不是药神》说起：为什么新发明的药物会这么贵？'
 date: 2018-07-09 01:00:00+0800
-image: http://image.fungenomics.com/20180709-Dying-to-Survive.png
+image: https://static.fungenomics.com/images/2021/03/20180709-Dying-to-Survive.png
 categories:
     - 医疗健康
 tags:
     - 药物研发
+
+
 ---
 
-![我不是药神，剧照](http://image.fungenomics.com/20180709-Dying-to-Survive.png)
+
 
 电影里讲的故事和我从事的领域息息相关，朋友圈里也一直有朋友在传播这个故事的方方面面，我也从另一个角度分享一些看法。本文参考过吴军博士得到专栏中《硅谷方法学》的一些观点和数据。
 
@@ -16,7 +18,8 @@ tags:
 
 随着《我不是药神》的大热刷屏，大药厂在某种程度上成了背锅侠。然而今天新药的研发有多难，可能不是每个人都了解到的。先看下面这张照片：
 
-![](http://image.fungenomics.com/20180709-drug-discovery.jpg)
+![](https://static.fungenomics.com/images/2021/03/20180709-drug-discovery-20210327230917452.jpg)
+
 <p align="center"><a>图片来自[知乎](https://www.zhihu.com/question/20056858/answer/128329152)</a></p>
 
 照片里列举的数据是国际顶级制药集团罗氏所给出的。1.0 瑞士法郎=1.01美元，**中间的问号是12年！**每一个新药的研发其实都有一个“1010”现象，即需要耗费（大于）10亿美元的资金和超过10年的时间。从致病因子的发现到最终药物的上市，这中间有几百到几千名科学家的共同努力。剧中的“格列宁”（其实是“格列卫”）从分子研究到最后成功研制并上市更是经历了大约半个世纪的时间！**可见一个有效的药物研发是多么地艰难！**
@@ -41,7 +44,8 @@ tags:
 
 **所以到最后真正能够通过临床三期验证并获得FDA/CFDA认证的药极为罕见。常常是上万个新药，最后只有不到5个能够通过重重关卡，拿到FDA认证，并最终上市**（如下图）。
 
-![](http://image.fungenomics.com/20180709-drug-development-pipeline.jpg)
+![](https://static.fungenomics.com/images/2021/03/20180709-drug-development-pipeline-20210327230917494.jpg)
+
 <p align="center"><a>一万个新药，15年时间，只有不足5个药最终拿到FDA认证</a></p>
 
 有时能通过FDA二期临床试验，却通不过第三期还有一个原因，就是新药的开发者在二期临床试验阶段做了过多适应当地患者的调整。很多时候二期临床也不是一次就能通过的，研制药的人如果看到效果不好，会调整药的成分，包括一些非药效，但是能帮助药物吸收的成分。这样可能经过几次调整，就通过了FDA二期，但是药的成分被过分优化，以至于缺乏普遍意义了。
@@ -54,7 +58,8 @@ tags:
 
 格列卫研究了近半个世纪，中间投入了成千上万的科学工作者。而它的真正受众是发生了“费城染色体”现象的慢性粒细胞性白血病患者：
 
-![](http://image.fungenomics.com/20180709-Philadelphia-Chromosome.png)
+![](https://static.fungenomics.com/images/2021/03/20180709-Philadelphia-Chromosome-20210327230917507.png)
+
 <p align="center"><a>9号染色体和22号染色体长臂发生易位，形成费城染色体（上图最右边的一条小染色体）。当染色体易位发生时，ABL就会与22号染色体上的基因BCR融合成一个新基因BCR-ABL。这个融合基因会导致ABL所拥有的酪氨酸蛋白激酶过度活化，从而引起细胞失控性增殖，从而导致慢性粒细胞性白血病。</a></p>
 
 但是这个类型的白血病其实是一种较为罕见的疾病，属四大成人白血病的其中一中。在美国，每年得病的人数约为5000人，仅占所有癌症的0.3%。可见，这种药物的市场潜力其实也很低，盈利空间极窄。类似的例子其实还有很多，所以它们的贵其实有时也是比较无奈的。
@@ -104,7 +109,7 @@ tags:
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230845729-20210327230917814.png)
 
 ***
 
@@ -117,3 +122,4 @@ tags:
 在这里你可以结识到全国优秀的基因组学和生物信息学专家，同时可以分享你的经验、见解和思考，有问题也可以向我提问和圈里的星友们提问。
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://wx.zsxq.com/mweb/views/joingroup/join_group.html?group_id=518881585444&secret=vcdvs4rdpst7stq4wcvqmlwvogc0ssbn&user_id=28821152428221)
+

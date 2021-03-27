@@ -6,9 +6,11 @@ categories:
 tags:
     - github
     - jekyll
+
+
 ---
 
-![Figure1](http://m3.img.srcdd.com/farm5/d/2014/0712/06/7EF2461D96BD30ABB890C3846C08DCAE_LARGE_1900_800.png)
+
 
 这该如何说起。。。 
 
@@ -30,4 +32,4 @@ OK，暂时先这样了！
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327222723626-20210327222902386.png)

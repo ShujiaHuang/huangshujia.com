@@ -1,14 +1,16 @@
 ---
 title: '我是解螺旋的矿工，我热爱生命科学'
 date: 2018-03-30 01:00:00+0800
-image: https://upload-images.jianshu.io/upload_images/2248079-4b82b4651e287410?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240
+image: https://static.fungenomics.com/images/2021/03/1240.jpeg
 categories:
     - 生物信息
     - 基因组学
+
+
 ---
 
 
-![](https://upload-images.jianshu.io/upload_images/2248079-4b82b4651e287410?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://static.fungenomics.com/images/2021/03/1240-20210327230009215.jpeg)
 
 这应该是首次正式地介绍这个公众号，我想通过这篇文章让大家能够更好地了解**『解螺旋的矿工』**。 
 
@@ -28,15 +30,15 @@ categories:
 
 所幸，这些付出逐渐有了回报，得到了越来越多的认可！下面的这些溢美之词是读者朋友们的信任（后台较多实在无法一一贴出），它们不断激励我精益求精地写好每一篇文章，回答好每一个问题，认真分享好基因组学知识和技术。
 
-![](https://upload-images.jianshu.io/upload_images/2248079-803cb672f8a3f6d7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://static.fungenomics.com/images/2021/03/1240-20210327230009244.png)
 
-![](https://upload-images.jianshu.io/upload_images/2248079-e937833a1d97b98c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://static.fungenomics.com/images/2021/03/1240-20210327225932279-20210327230009289.png)
 
-![](https://upload-images.jianshu.io/upload_images/2248079-691d6554ea85b800?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://static.fungenomics.com/images/2021/03/1240-20210327225932346-20210327230009335.jpeg)
 
-![这是在公众号的后台](https://upload-images.jianshu.io/upload_images/2248079-3da652e0af93600b?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![这是在公众号的后台](https://static.fungenomics.com/images/2021/03/1240-20210327225932468-20210327230009365.png)
 
-![这是在知识星球上](https://upload-images.jianshu.io/upload_images/2248079-501f6376828bb76a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![这是在知识星球上](https://static.fungenomics.com/images/2021/03/1240-20210327225932553-20210327230009424.jpeg)
 
 最后，分享一段我很喜欢的话，来自@韩建：
 
@@ -62,5 +64,5 @@ categories:
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://t.zsxq.com/jiq3Z3B)
 
-![](https://upload-images.jianshu.io/upload_images/2248079-6d491605e36a9e02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://static.fungenomics.com/images/2021/03/1240-20210327225932642-20210327230009473.png)
 

@@ -1,13 +1,17 @@
 ---
 title: '修改二维码生成工具'
 date: 2014-09-19 01:00:00+0800
-image: http://image.fungenomics.com/fg.post.qrcode.png
+image: https://static.fungenomics.com/images/2021/03/fg.post.qrcode.png
 categories:
     - 博客搭建
 tags:
     - 网站插件
     - google
+
+
 ---
+
+
 
 本来博客在改版后，短时间内，我是不想做修改了的，回国后，没办法，原来的用于生成二维码的代码必须得换！根本就是失效了。原因也是很明朗的，二维码生成代码用的API是google的，稳定，强大......但在墙面前显得跟土一样。有时候我总觉得，是不是因为有了墙，大家的技术反而都要强那么一点了——魔高一尺道高一丈！只是有些时候也不得不拜倒了。总之，为了速度，为了大家的良好体验，换了！google的跟踪代码，我也取消了，换成了百度，不然网页死活打不开的，这是题外话了。
 
@@ -43,8 +47,7 @@ API接口调用代码如下：
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
-
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327223606951-20210327223644056.png)
 
 
 

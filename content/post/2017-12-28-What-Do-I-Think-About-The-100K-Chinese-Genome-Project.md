@@ -1,21 +1,23 @@
 ---
 title: '我如何看待今日央视宣布我国启动“中国10万人基因组计划”'
 date: 2017-12-28 01:00:00+0800
-image: http://image.fungenomics.com/chinese_greatwall.jpg
+image: https://static.fungenomics.com/images/2021/03/chinese_greatwall.jpg
 description: 知易行难
 categories:
     - 基因组学
 tags:
     - 观点
+
+
 ---
 
-![ ](http://image.fungenomics.com/chinese_greatwall.jpg)
 
-​我今天下午第一时间看到这个研究计划的时候，正在买东西，第一反应是：可惜了！
+
+我今天下午第一时间看到这个研究计划的时候，正在买东西，第一反应是：可惜了！
 
 **以下是我的愚蠢看法，各位请吐槽。**
 
-![figure1](http://image.fungenomics.com/cctv_cgp1.jpeg)
+![figure1](https://static.fungenomics.com/images/2021/03/cctv_cgp1-20210327225543034.jpeg)
 
 它应该算是目前国内 **最有上层优势**的一个大规模中国人群基因组研究项目——新闻里说的是首个重大国家计划。
 
@@ -25,7 +27,7 @@ tags:
 
 今日宣布的这个“中国10万人基因组计划”，据我所知，**应该是第一个上了央视的国字辈项目**，这其实很了得，背后也有大科学家和院士领头。然而，很可惜的是，它的侧重点却是在健康人群队列上！ 
 
-![figure2](http://image.fungenomics.com/cctv_cgp2.jpeg)
+![figure2](https://static.fungenomics.com/images/2021/03/cctv_cgp2-20210327225543060.jpeg)
 
 我并不是说，那样不对，只是在这 **2-3年内一定有大几千、上万甚至几万的汉族人健康队列出来**。所以在汉族人健康队列上，几年后它很可能会失去先发优势，科学价值可能不高了，从结果上看，最多就是跟风——我认为作为重大国家计划是应该会考虑科学的先发价值的。 当然作为医学和疾病研究的背景数据肯定依然有用——不管如何背景数据能够越多自然会越好。
 
@@ -37,7 +39,7 @@ tags:
 
 对于这个项目我觉得 **唯一的看点是里面提到的9个少数民族**，这是目前的空白，而且短时间内估计很难有其它项目能够填补这个空白。它对于广大少数民族同胞来说意义更大。而且，它对于我们如何更好地认识汉族人与少数民族之间的遗传差异和关系都有重要的价值。但不知到时具体样本数目是几何。
 
-![figure3](http://image.fungenomics.com/cctv_cgp3.jpeg)
+![figure3](https://static.fungenomics.com/images/2021/03/cctv_cgp3-20210327225543087.jpeg)
 
 **以上，便是我的愚见。**
 
@@ -48,7 +50,7 @@ tags:
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225518506-20210327225543391.png)
 
 
 

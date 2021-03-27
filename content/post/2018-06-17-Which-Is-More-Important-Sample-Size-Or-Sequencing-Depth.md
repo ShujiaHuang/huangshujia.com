@@ -1,7 +1,7 @@
 ---
 title: '样本量重要，还是测序深度重要? 生物信息工程师可以分为多少种类型? |《解螺旋技术交流圈》精华第3期'
 date: 2018-06-17 01:00:00+0800
-image: http://image.fungenomics.com/helixminer-club.png
+image: https://static.fungenomics.com/images/2021/03/helixminer-club.png
 categories:
     - 生物信息
     - 基因组学
@@ -10,9 +10,11 @@ tags:
     - 样本量
     - WES
     - 职业发展
+
+
 ---
 
-![](http://image.fungenomics.com/helixminer-club.png)
+
 
 今天，继续把发在“解螺旋技术交流圈”的部分主题整理出来，分享给你。
 
@@ -20,7 +22,7 @@ tags:
 
 你会注意到这个差异，应该是由于你所用的是Pair-End（PE）测序的数据吧，如果是SE数据，差异其实很小。对于PE测序数据主要有两个地方的差异：
 
-![](http://image.fungenomics.com/samtools-mpileup.png)
+![](https://static.fungenomics.com/images/2021/03/samtools-mpileup-20210327230739795.png)
 
 <p align="center"><a>samtools mpileup</a></p>
 
@@ -32,7 +34,7 @@ tags:
 
 此外，如果要更好地计算比对数据的覆盖深度和覆盖度的话，samtools depth虽然能够胜任，但是功能还是比较单一，而且由于每个位点都会输出，导致结果文件总是很巨大，我还是比较推荐使用bedtools2来完成，如下图，它的功能和输出形式要更加丰富。
 
-![](http://image.fungenomics.com/bedtools.png)
+![](https://static.fungenomics.com/images/2021/03/bedtools-20210327230739891.png)
 
 <p align="center"><a>bedtools2计算基因组覆盖度的不同模式</a></p>
 
@@ -44,7 +46,8 @@ VQSR的核心原理是利用机器学习算法构造一个区分“好”变异�
 
 基于群体遗传的原理，这些已知且被严格验证的变异（如HapMap数据）会被认为是更加靠谱的变异，因此在初始化的时候先把它们当作是“好”的——也就是正确的变异。这个初始变异集很重要，然后利用这些好变异训练一个区分好变异的GMM，接着对全部数据进行打分，再把评分最低的那些拿出来，构成一个最不像正确变异的集合，用来构造一个区分坏变异的GMM，用来专门识别坏变异。最后同时用好和坏的GMM再一次同时对变异进行打分，看每个变异更像谁，就能够评判出这个变异可信的质量值了。越靠近好的GMM，质量就越高，这就是VQSR过滤的大致原理（如下图）。
 
-![](http://image.fungenomics.com/vqsr_model.png)
+![ ](https://static.fungenomics.com/images/2021/03/vqsr_model-20210327230739966.png)
+
 <p align="center"><a>VQSR区分好变异和坏变异的分类器</a></p>
 
 为了得到理想好的结果，VQSR在进行模型训练的时候就有一个最低可用位点数目的要求——通常是好和坏变异可供训练的数目必须超过5000个，如果Overlap位点太少，是无法用于训练一个合适的模型的，这对于全基因组来说是没任何问题的，但外显子区域加起来也就差不多50Mb左右，长度不大，单个样本里面包含的变异数目大约30K-40K。这些位点本来就不多，它们和已知高质量变异集Overlap的就更少了,最终就导致达不到模型训练的最低要求。所以单个样本的WES（或者样本数量较少的WES）都无法使用VQSR进行质控，小Panel的测序数据也是同理。
@@ -100,7 +103,8 @@ LD本身反应的是一个物种基因组上发生过的重组情况。基因组
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230714799-20210327230740141.png)
+
 ***
 
 这是知识星球：『解螺旋技术交流圈』，是一个我与读者朋友们的私人朋友圈。我有9年前沿而完整的生物信息学、NGS领域的工作经历，在该领域发有多篇Nature级别的科学文章，我也希望借助这个知识星球把自己的一些微薄经验分享给更多对组学感兴趣的伙伴们。

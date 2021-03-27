@@ -1,7 +1,7 @@
 ---
 title: '从零开始完整学习全基因组测序（WGS）数据分析：第4节 构建WGS主流程'
 date: 2017-09-19 01:00:00+0800
-image: http://image.fungenomics.com/wgs0400_cover.jpg
+image: https://static.fungenomics.com/images/2021/03/wgs0400_cover.jpg
 categories:
     - 生物信息
     - 基因组学
@@ -9,15 +9,17 @@ tags:
     - NGS
     - WGS
     - 流程
+
+
 ---
 
-![wgs04](http://image.fungenomics.com/wgs0400_cover.jpg)
+
 
 这篇文章很长，超过1万字，是本系列中最重要的一篇，因为我并非只是在简单地告诉大家几条硬邦邦的操作命令。对于新手而言不建议碎片时间阅读，对于有一定经验的老手来说，相信依然可以有所收获。在开始之前，我想先说一句：**流程的具体形式其实是次要的，WGS本质上只是一个技术手段，重要的是，我们要明白自己所要解决的问题是什么，所希望获取的结果是什么，然后再选择合适的技术**。这是许多人经常忽视的一个重要问题。
 
 好了，以下进入正文。
 
-![wgs-pipeline](http://image.fungenomics.com/wgs0401.pipeline.png)
+![wgs-pipeline](https://static.fungenomics.com/images/2021/03/wgs0401.pipeline-20210327225226440.png)
 
 这是WGS数据分析的流程图。流程的目的是准确检测出每个样本（这里特指人）基因组中的变异集合，也就是人与人之间存在差异的那些DNA序列。我把整个分析过程按照它们实际要完成的功能，将其分成了三个大的模块：
 
@@ -93,12 +95,14 @@ Usage: bwa mem [options] <idxbase> <in1.fq> [in2.fq]
 
 我们已经知道NGS是短读长的测序技术，一次测出来的read的长度都不会太长，那为了尽可能把一个DNA序列片段尽可能多地测出来，既然测一边不够，那就测两边，于是就有了一种从被测DNA序列两端各测序一次的模式，**这就被称为双末端测序（Pair-End Sequencing，简称PE测序）**。如下图是Pair-End测序的示意图，中间灰色的是被测序的DNA序列片段，左边黄色带箭头和右边蓝色带箭头的分别是测序出来的read1和read2序列，这里假定它们的长度都是100bp。虽然很多时候Pair-End测序还是无法将整个被测的DNA片段完全测通，但是它依然提供了极其有用的信息，比如，我们知道每一对的read1和read2都来自于同一个DNA片段，read1和read2之间的距离是这个DNA片段的长度，而且read1和read2的方向刚好是相反的（这里排除mate-pair的情形）等，这些信息对于后面的变异检测等分析来说都是非常有用的。
 
-![Pair-End 测序](http://image.fungenomics.com/wgs0402.pair-end.png)
+![Pair-End 测序](https://static.fungenomics.com/images/2021/03/wgs0402.pair-end-20210327225226458.png)
+
 <p align="center"><a>Pair-End 测序</a></p> 
 
 另外，在read1在fq1文件中位置和read2在fq2文件中的文件中的位置是相同的，而且read ID之间只在末尾有一个'/1'或者'/2'的差别。
 
-![read1 ID和read2 ID的差别](http://image.fungenomics.com/wgs0403.png)
+![read1 ID和read2 ID的差别](https://static.fungenomics.com/images/2021/03/wgs0403-20210327225226524.png)
+
 <p align="center"><a>read1 ID和read2 ID的差别</a></p> 
 
 既然有双末端测序，那么与之对应的就有单末端测序（Single End Sequecing，简称SE测序），即只测序其中一端。因此，我们在使用bwa比对的时候，实际上，in2.fq是非强制性的（所以用方括号括起来），只有是双末端测序的数据时才需要添加。
@@ -139,7 +143,7 @@ $ bwa mem -t 4 -R '@RG\tID:foo_lane\tPL:illumina\tLB:library\tSM:sample_name' /p
 
 以上，我们就完成了read比对的步骤。接下来是排序：
 
-![排序](http://image.fungenomics.com/wgs0404.preprogress.sorted.png)
+![排序](https://static.fungenomics.com/images/2021/03/wgs0404.preprogress.sorted-20210327225226570.png)
 
 排序这一步我们也是通过使用samtools来完成的，命令很简单：
 
@@ -159,7 +163,7 @@ $ time samtools sort -@ 4 -m 4G -O bam -o sample_name.sorted.bam sample_name.bam
 
 ### 去除重复序列（或者标记重复序列）
 
-![去除重复序列](http://image.fungenomics.com/wgs0404.preprogress.rmdup.png)
+![去除重复序列](https://static.fungenomics.com/images/2021/03/wgs0404.preprogress.rmdup-20210327225226609.png)
 
 在排序完成之后我们就可以开始执行去除重复（准确来说是 **去除PCR重复序列**）的步骤了。
 
@@ -171,7 +175,8 @@ $ time samtools sort -@ 4 -m 4G -O bam -o sample_name.sorted.bam sample_name.bam
 
 情况确实如此，但是很多时候我们构建测序文库时能用的细胞量并不会非常充足，而且在打断的步骤中也会引起部分DNA的降解，这两点会使整体或者局部的DNA浓度过低，这时如果直接从这个溶液中取样去测序就很可能漏掉原本基因组上的一些DNA片段，导致测序不全。**而PCR扩增的作用就是为了把这些微弱的DNA多复制几倍乃至几十倍，以便增大它们在溶液中分布的密度，使得能够在取样时被获取到**。所以这里大家需要记住一个重点，PCR扩增原本的目的是为了增大微弱DNA序列片段的密度，但由于整个反应都在一个试管中进行，因此其他一些密度并不低的DNA片段也会被同步放大，那么这时在取样去上机测序的时候，这些DNA片段就很可能会被重复取到相同的几条去进行测序（下图为PCR扩增示意图）。
 
-![PCR扩增示意图](http://image.fungenomics.com/wgs0405.pcr.png)
+![PCR扩增示意图](https://static.fungenomics.com/images/2021/03/wgs0405.pcr-20210327225226627.png)
+
 <p align="center"><a>PCR扩增示意图：PCR扩增是一个指数扩增的过程，图中原本只有一段双链DNA序列，在经过3轮PCR后就被扩增成了8段</a></p> 
 
 看到这里，你或许会觉得，那没必要去除不也应该可以吗？因为即便扩增了多几次，不也同样还是原来的那一段DNA吗？直接用来分析对结果也不会有影响啊！难道不是吗？
@@ -186,7 +191,7 @@ $ time samtools sort -@ 4 -m 4G -O bam -o sample_name.sorted.bam sample_name.bam
 
 那么具体是如何做到去除这些PCR重复序列的呢？我们可以抛开任何工具，仔细想想，既然PCR扩增是把同一段DNA序列复制出很多份，那么这些序列在经过比对之后它们一定会定位到基因组上相同的位置，比对的信息看起来也将是一样的！于是，我们就可以根据这个特点找到这些重复序列了！
 
-![重复性序列](http://image.fungenomics.com/wgs0406.dup.png)
+![重复性序列](https://static.fungenomics.com/images/2021/03/wgs0406.dup-20210327225226650.png)
 
 事实上，现有的工具包括Samtools和Picard中去除重复序列的算法也的确是这么做的。不同的地方在于，samtools的rmdup是直接将这些重复序列从比对BAM文件中删除掉，而Picard的MarkDuplicates默认情况则只是在BAM的FLAG信息中标记出来，而不是删除，因此这些重复序列依然会被留在文件中，只是我们可以在变异检测的时候识别到它们，并进行忽略。
 
@@ -200,6 +205,7 @@ java -jar picard.jar MarkDuplicates \
 ```
 
 这里只把重复序列在输出的新结果中标记出来，但不删除。如果我们非要把这些序列完全删除的话可以这样做：
+
 ```bash
 java -jar picard.jar MarkDuplicates \ 
   REMOVE_DUPLICATES=true \
@@ -220,7 +226,7 @@ $ samtools index sample_name.sorted.markdup.bam
 
 ### 局部重比对
 
-![局部重比对](http://image.fungenomics.com/wgs0407.realign.png)
+![局部重比对](https://static.fungenomics.com/images/2021/03/wgs0407.realign-20210327225226696.png)
 
 接下来是局部区域重比对，通常也叫Indel局部区域重比对。有时在进行这一步骤之前还有一个merge的操作，将同个样本的所有比对结果合并成唯一一个大的BAM文件【注】，merge的例子如下：
 
@@ -240,7 +246,8 @@ $ samtools merge <out.bam> <in1.bam> [<in2.bam> ... <inN.bam>]
 
 下图给大家展示一个序列重比对之前和之后的结果，其中灰色的横条指的是read，空白黑线指的是deletion，有颜色的碱基指的是错配碱基。
 
-![Indel局部重比对的前后的对比](http://image.fungenomics.com/wgs0408.realign.png)
+![Indel局部重比对的前后的对比](https://static.fungenomics.com/images/2021/03/wgs0408.realign-20210327225226753.png)
+
 <p align="center"><a>Indel局部重比对的前后的对比</a></p>
 
 相信大家都可以明显地看到在序列重比对之前，在这个区域的比对数据是多么的糟糕，如果就这样进行变异检测，那么一定会得到很多假的结果。而在经过局部重比对之后，这个区域就变得非常清晰而分明，它原本发生的就只是一个比较长的序列删除（deletion）事件，但在原始的比对结果中却被错误地用碱基错配和短的Indel所代替。
@@ -272,31 +279,34 @@ java -jar /path/to/GenomeAnalysisTK.jar \
 * 第一步，RealignerTargetCreator ，目的是定位出所有需要进行序列重比对的目标区域（如下图）；
 * 第二步，IndelRealigner，对所有在第一步中找到的目标区域运用算法进行序列重比对，最后得到捋顺了的新结果。
 
-![IndelRealigner.intervals文件内容示例](http://image.fungenomics.com/wgs0409.realign.png)
+![IndelRealigner.intervals文件内容示例](https://static.fungenomics.com/images/2021/03/wgs0409.realign-20210327225226767.png)
+
 <p align="center"><a>IndelRealigner.intervals文件内容示例</a></p> 
 
 以上这两个步骤是缺一不可的，顺序也是固定的。而且，需要指出的是，**这里的-R参数输入的human.fasta不是BWA比对中的索引文件前缀，而是参考基因组序列（FASTA格式）文件，下同。**
 
 另外，在重比对步骤中，我们还看到了两个陌生的VCF文件，分别是：1000G_phase1.indels.b37.vcf和Mills_and_1000G_gold_standard.indels.b37.vcf。这两个文件来自于千人基因组和Mills项目，里面记录了那些项目中检测到的人群Indel区域。我上面其实也提到了，**候选的重比对区除了要在样本自身的比对结果中寻找之外，还应该把人群中已知的Indel区域也包含进来，而这两个是我们在重比对过程中最常用到的。**这些文件你可以很方便地在[GATK bundle ftp](ftp://ftp.broadinstitute.org/bundle/)中下载，注意一定要选择和你的参考基因组对应的版本，我们这里用的是b37版本。
 
-![GATK bundle](http://image.fungenomics.com/wgs0410.gatk-bundle.png)
+![GATK bundle](https://static.fungenomics.com/images/2021/03/wgs0410.gatk-bundle-20210327225226784.png)
+
 <p align="center"><a>GATK bundle</a></p> 
 
 **那么既然Indel局部重比对这么好，这么重要，似乎看起来在任何情况下都应该是必须的。然鹅，我的回答是否定的！**惊讶吗！
 
-![友谊的小船](http://image.fungenomics.com/wgs0411.png)
+![友谊的小船](https://static.fungenomics.com/images/2021/03/wgs0411-20210327225226816.png)
 
 但否定是有前提的！**那就是我们后面的变异检测必须是使用GATK，而且必须使用GATK的HaplotypeCaller模块，仅当这个时候才可以减少这个Indel局部重比对的步骤**。原因是GATK的HaplotypeCaller中，会对潜在的变异区域进行相同的局部重比对！但是其它的变异检测工具或者GATK的其它模块就没有这么干了！所以切记！
 
 ### 重新校正碱基质量值（BQSR）
 
-![BQSR](http://image.fungenomics.com/wgs0412.BQSR.png)
+![BQSR](https://static.fungenomics.com/images/2021/03/wgs0412.BQSR-20210327225226845.png)
 
 **在WGS分析中，变异检测是一个极度依赖测序碱基质量值的步骤。因为这个质量值是衡量我们测序出来的这个碱基到底有多正确的重要（甚至是唯一）指标**。它来自于测序图像数据的base calling。因此，基本上是由测序仪和测序系统来决定的。但不幸的是，影响这个值准确性的系统性因素有很多，包括物理和化学等对测序反应的影响，甚至连仪器本身和周围环境都是其重要的影响因素。当把所有这些东西综合在一起之后，往往会发现计算出来的碱基质量值要么高于真实结果，要么低于真实结果。那么，我们到底该如何才能获得符合真实情况的碱基质量值？
 
 BQSR（Base Quality Score Recalibration）这个步骤就是为此而存在的，这一步同样非常重要。它主要是通过机器学习的方法构建测序碱基的错误率模型，然后对这些碱基的质量值进行相应的调整。
 
-![BQSR质量校正对比](http://image.fungenomics.com/wgs0413.BQSR.png)
+![BQSR质量校正对比](https://static.fungenomics.com/images/2021/03/wgs0413.BQSR-20210327225226887.png)
+
 <p align="center"><a>BQSR质量校正对比</a></p>
 
 图中，横轴（Reported quality score）是测序结果在Base calling之后报告出来的质量值，也就是我们在FASTQ文件中看到的那些；纵轴（Empirical quality score）代表的是“真实情况的质量值”。
@@ -337,7 +347,7 @@ java -jar /path/to/GenomeAnalysisTK.jar \
 
 ## 变异检测
 
-![变异检测功能组合](http://image.fungenomics.com/wgs0414.variant.png)
+![变异检测功能组合](https://static.fungenomics.com/images/2021/03/wgs0414.variant-20210327225226927.png)
 
 事实上，这是目前所有WGS数据分析流程的一个目标——获得样本准确的变异集合。这里变异检测的内容一般会包括：SNP、Indel，CNV和SV等，这个流程中我们只做其中最主要的两个：SNP和Indel。我们这里使用GATK HaplotypeCaller模块对样本中的变异进行检测，它也是目前最适合用于对二倍体基因组进行变异（SNP+Indel）检测的算法。
 
@@ -500,4 +510,4 @@ java -jar /path/to/GenomeAnalysisTK.jar -T ApplyRecalibration \
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225200309-20210327225227263.png)

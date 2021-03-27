@@ -1,7 +1,7 @@
 ---
 title: '该如何自学入门生物信息学'
 date: 2017-12-16 01:00:00+0800
-image: http://image.fungenomics.com/startup-photos.jpg
+image: https://static.fungenomics.com/images/2021/03/startup-photos.jpg
 description: 最大的前提是，兴趣。兴趣是最好的老师
 categories:
     - 生物信息
@@ -9,8 +9,11 @@ categories:
 tags:
     - WGS
     - 入门
+
+
 ---
-![ ](http://image.fungenomics.com/startup-photos.jpg)
+
+
 
 前几天在知乎上，我看到了这么一个问题“如何自学生物信息学？”，看了一圈回答后，发现很多答主自己也是初学者，可能还在摸索中，回答也并没有真正抓到重点。作为一个过来人，我觉得这个问题其实还挺重要的，相信也困扰着不少人，因此在这里我想尝试回答一下这个问题。
 
@@ -22,7 +25,7 @@ tags:
 
 至于 **分子生物学中诸多涉及细胞机制机理的知识我觉得在刚开始的时候反而可以缓一缓**。我本来是学物理的，做生物信息可以说是半路出家，但其实没觉得有什么障碍，后来在实际需要的时候慢慢补上即可。推荐大家买本 **[《基因X》](https://book.douban.com/subject/20502437/)屯着——这是一本有厚度的基因必读书（曾经是《基因8》），作为参考书，平时有空的时候记得多翻翻**。
 
-![Gene X](http://image.fungenomics.com/gene_x.png)
+![Gene X](https://static.fungenomics.com/images/2021/03/gene_x-20210327225502299.png)
 
 此外，我觉得尽量避免去看生物信息学导论那类书，很多都太旧了，用处不大是一个方面，关键是还会浪费不少时间。
 
@@ -42,7 +45,7 @@ tags:
 
 不过，不用太担心，我们不需要成为Linux专家。对于生物信息研究人员来说，只有了解Linux的文件系统结构，能够在Terminal中灵活运用基本的Linux命令就足够了，不过vi需要掌握——我们编写程序时需要用到它。但要 **达成这些目标不需要看大部头的Linux书籍**——这个也是我想给所有要学习生物信息的小伙伴们提个醒，这样可以节省很多不必要花的时间，不然等你看完一大本Linux书，恐怕兴趣也都被磨得差不多了，**要直奔目标**。
 
-![喝茶](http://image.fungenomics.com/%E5%96%9D%E8%8C%B6.jpg)
+![喝茶](https://static.fungenomics.com/images/2021/03/%E5%96%9D%E8%8C%B6-20210327225502320.jpg)
 
 我自己使用Linux的时间超过8年，，但是所使用的命令，合起来频度超过99%的竟然不超过20条！基本上就是在接触生信的第一天学会的，而对于聪明如你们的人来说，相信一定可以用更短的时间融汇贯通，对于这几个命令我简单列一下（注意都是在Terminal模式下）：
 
@@ -79,7 +82,8 @@ tags:
 * 让你理解机器的工作原理，理解你的程序是如何运作的。这非常有助于你以后写出更加优秀的代码；
 * 设计高效率的算法模块，往往需要借助C/C++，而且设计出来的模块还可以很方便地包装起来用在Python中。同时，也有很多优秀的组学数据处理包是C/C++写的，比如，SSW、Bamtools和[SeqAn](https://github.com/seqan/seqan)——这个包很强大——我们可以用它编写比对算法，变异检测算法等。
 
-![Python如何调用C++](http://image.fungenomics.com/st.post.2015-04-03-Python-call-Cpp-Module.png)
+![Python如何调用C++](https://static.fungenomics.com/images/2021/03/st.post.2015-04-03-Python-call-Cpp-Module-20210327225432046-20210327225502412.png)
+
 <p align="center"><a>Python如何调用C++</a></p> 
 
 另外，我认为R是很容易学的，这里也无意起语言之争，虽然Python比R好。只要你有兴趣，在有了上面的基础之后，可以在很短的时间内学会。
@@ -94,7 +98,7 @@ Python教程很多！我这里推荐一下gitbook上的这个[《简明Python教
 
 “书上得来终觉浅，绝知此事要躬行”。实践是必须的，如果没条件的话可以到[Rosalind](http://rosalind.info/problems/locations/)这个网站上做些训练题，这上面有着很多有意义的生物信息题目，从难到易的都有，涵盖的面也比较广（包括RNA，DNA，蛋白），值得一战。另外要积极寻找到大型基因科技公司（比如华大基因）或者基因研究所实习的机会。
 
-![Rosalind](http://image.fungenomics.com/rosalind.png)
+![Rosalind](https://static.fungenomics.com/images/2021/03/rosalind-20210327225502452.png)
 
 ## 构建一个流程，敢于造轮子
 
@@ -124,32 +128,31 @@ Python教程很多！我这里推荐一下gitbook上的这个[《简明Python教
 
 1. 来自OReilly《Bioinformatics Data Skills- Reproducible.and.Robust.Research.with.Open.Source.Tools》主要偏重工具的使用和数据文件的处理，虽然讲的不是很深入，但是作为生物信息初学者的入门书来说还是十分有价值的，2015年出版的，也不算旧。
 
-![bioinformatic_data_skill](http://image.fungenomics.com/bioinformatic_data_skill.png)
+![bioinformatic_data_skill](https://static.fungenomics.com/images/2021/03/bioinformatic_data_skill-20210327225502549.png)
 
 2. 第二本是《Bioinformatics with Python Cookbook》这一本相比于第一本来说会难一些，它会侧重于一些主题性质的内容，比如群体遗传学，基因大数据等。
 
-![bioinformatic_with_python_cookbook](http://image.fungenomics.com/bioinformatic_with_python_cookbook.png)
+![bioinformatic_with_python_cookbook](https://static.fungenomics.com/images/2021/03/bioinformatic_with_python_cookbook-20210327225502616.png)
 
 这两本书都有pdf电子版。感兴趣的小伙伴可以在公众号后台回复“**入门书籍**”这四个字就可以获得了。
 
 最后，再推荐几个在线课程。第一个是Coursera上的一个课程：[genomic data science](https://www.coursera.org/specializations/genomic-data-science)
 
-![genomic-data-science](http://image.fungenomics.com/coursera_genome_data_science.png)
+![genomic-data-science](https://static.fungenomics.com/images/2021/03/coursera_genome_data_science-20210327225502781.png)
 
 这是约翰霍普金斯大学组织的一个系列课程，紧扣现在主流的组学数据分析，非常适合于入门学习，是一个精品系列，讲的很好，力荐，但是需要收费，只有7天的免费体验时间。
 
 另外，EMBO上也搞了一个，[在这里](https://www.ebi.ac.uk/training/online/course/embo-practical-course-analysis-high-throughput-seq)，不过我认为没有Coursera的系统全面，但它是免费的。
 
-![EMBO Course](http://image.fungenomics.com/embo_course.png)
+![EMBO Course](https://static.fungenomics.com/images/2021/03/embo_course-20210327225502892.png)
 
 好了，最后，祝你学习快乐。
 
-![我想学习](http://image.fungenomics.com/%E6%83%B3%E5%AD%A6%E4%B9%A0.png)
+![我想学习](https://static.fungenomics.com/images/2021/03/%E6%83%B3%E5%AD%A6%E4%B9%A0-20210327225502932.png)
 
 --------------
 
 本文首发于我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
-
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327225432631-20210327225503113.png)
 

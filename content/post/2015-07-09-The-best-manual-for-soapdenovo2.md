@@ -1,23 +1,29 @@
 ---
 title: '目前最好最完整的SOAPdenovo使用说明'
 date: 2015-07-09 
-image: http://image.fungenomics.com/tree.jpeg
+image: https://static.fungenomics.com/images/2021/03/tree.jpeg
 description: 从0到1的基因组序列组装总是最难的。
 categories:
     - 生物信息
 tags:
     - 组装
     - SOAPdenovo
+
+
 ---
+
+
 
 由于丹麦人国家基因组项目的原因，近期我整理了一份关于SOAPdenovo2的使用说明，内容包括了程序使用、参数的详细说明、参数如何调整、各个主要输出文件的格式说明等，而且我敢说这是目前最好最全的！
 
 ### 简介
+
 SOAPdenovo（目前最新版是SOAPdenovo2）是一种应用de Bruijn graph组装短read的方法，它以kerm为节点单位，利用de Bruijn图的方法实现全基因组的组装，与其他短序列组装软件相比，它可以进行大型基因组，比如人类基因组的组装，组装结果更加准确可靠，可以通过组装的结果非常准确地鉴别出基因组上的序列结构性变异，为构建全基因组参考序列和以低测序成本对未知基因组实施精确分析创造了可能。
 
 下载地址：<http://soap.genomics.org.cn/soapdenovo.html>
 
 安装：
+
  * 下载SOAPdenovo的压缩包          
  * 解压缩     
  * 将得到可执行文件SOAPdenovo和一个配置文件的模板example.contig
@@ -31,6 +37,7 @@ SOAPdenovo可以一步跑完，也可以分成四步单独跑，一步跑完的�
 ```
 
 四步单独跑的脚本:
+
 ```bash
 ./SOAPdenovo pregraph -s lib.cfg -d 1  -K 29 -o ant >pregraph.log
 ./SOAPdenovo contig -g ant -D 1 -M 3 >contig.log
@@ -63,12 +70,14 @@ SOAPdenovo可以一步跑完，也可以分成四步单独跑，一步跑完的�
 ### 使用方法及示例
 
 （1）示例
+
 ```bash
 SOAPdenovo all -s HCB.lib -K 25 -d -o test
 ```
 
 （2） 输入文件
 configFile，配置文件内容如下，非程序生成，需要软件使用者自己配置。各个说明参考如下：
+
 ```
 # 以“#”开头的行是注释内容
 
@@ -131,6 +140,7 @@ p=/path/**LIBNAMEA**/pairs_in_one_file.fa
 ### 输出文件及说明
 
 SOAPdenovo 分四部分别对应的输出文件：
+
 ```bash
  1. pregraph  生成7个文件 *.kmerFreq  *.edge  *.preArc  *.markOnEdge  *.path *.vertex  *.preGraphBasic
  2. contig       生成4个文件 *.contig  *.ContigIndex  *.updated.edge  *.Arc
@@ -202,6 +212,7 @@ the longest is 36165bp, contig N50 is 2871 bp,contig N90 is 553 bp
 ```
 
 3）map.log: 
+
 ```
 Output 415219610 out of 1956217742 (21.2)% reads in gaps
 1661094582 out of 1956217742 (84.9)% reads mapped to contigs
@@ -211,6 +222,7 @@ Output 415219610 out of 1956217742 (21.2)% reads in gaps
 map_len 默认值=K+5，当默认值大于设置的map_len时，以默认值为准，当默认值小于map_len值时，设置的map_len为准。
 
 4）scaff.log:
+
 ```
 average contig coverage is 23, 5832270 contig masked
 ```
@@ -243,6 +255,7 @@ the longest is 6561520bp,scaffold N50 is 836795 bp, scaffold N90 is 157667 bp
 ```
 
 scaffold 统计信息，将是根据rank分梯度的统计:
+
 ```
 Done with 13301 scaffolds, 2161915 gaps finished, 2527441 gaps overall
 ```
@@ -298,7 +311,7 @@ scaff.log中的错误信息：“Cannot open *.preGraphBasic. Now exit to system
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327224127944-20210327224157530.png)
 
 
 

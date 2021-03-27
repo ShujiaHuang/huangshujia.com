@@ -1,16 +1,16 @@
 ---
 title: 'RNA-Seq是否可以替代WES完成外显子的变异检测?二代测序的四种Read重复是如何产生的? |《解螺旋技术交流圈》精华第2期'
 date: 2018-05-26 01:00:00+0800
-image: http://image.fungenomics.com/ngs-panel-builder.jpg
+image: https://static.fungenomics.com/images/2021/03/ngs-panel-builder.jpg
 categories:
     - 生物信息
     - 基因组学
 tags:
     - RNA
     - WES
----
 
-![](http://image.fungenomics.com/ngs-panel-builder.jpg)
+
+---
 
 ## 1. RNA-Seq是否可以替代WES完成对外显子的变异检测？这不但省去用探针做外显子捕获这个步骤，代价更小；而且，它在融合基因的检测上还更有优势？
 
@@ -42,13 +42,13 @@ tags:
 
 在第5步中，某些cluster在测序的时候，捕获的荧光亮点由于光波的衍射，导致形状出现重影（如同近视散光一样），导致它可能会被当成两个荧光点来处理。这也会被读出为两条完全相同的reads，这是第三类duplicate，**称之为Optical duplicates（光学重复）；**
 
-![](http://image.fungenomics.com/duplicate.png)
+![](https://static.fungenomics.com/images/2021/03/duplicate-20210327230430022.png)
 
 以上三种比较常见，还有第四种，**称为Sister duplicates，这是比较特殊的一个情况。**它是文库分子的两条互补链同时都与Flowcell上的引物结合分别形成了各自的cluster被测序，最后产生的这对reads是完全反向互补的。**比对到参考基因组时，也分别在正负链的相同位置上，在有些分析中也会被认为是一种duplicates。**
 
 另外，据说 **NextSeq 平台上还出现过由于荧光信号捕获相机移动位置不够，导致 tile 边缘被重复拍摄，每次采样区域的边缘由于重复采样而出现了duplicates，**下图中蓝色点代表 duplicates，**可以看到在tile的左右两侧明显富集。**
 
-![](http://image.fungenomics.com/nextseq_dup.png)
+![](https://static.fungenomics.com/images/2021/03/nextseq_dup-20210327230430199.png)
 
 以上，除了NextSeq的情况之外，**所有这些不同类型的duplicates都各有特点。**比如，PCR duplicate的特点是随机分布于Flowcell表面；而cluster duplicates和optical duplicates 的特点是它们都来自Flowcell上位置相邻的cluster。Cluster的位置一般都会被记录在原始测序fastq文件@Sequence-id那一行中。
 
@@ -57,7 +57,8 @@ tags:
 PCR duplicates可以通过PCR-free来避免。并且PCR本身还会带来一些其他的问题，比如扩增过程自带了一定的偏向性，这会损失一定的测序随机性，使得某些序列信息被扩大或者减小。所以，**只要DNA起始量足够，那么我们就应该尽量采用PCR Free的方式来建库。**
 
 ## 3.GATK4不能进行多线程？
-![](http://image.fungenomics.com/gatk_logo.jpg)
+
+![](https://static.fungenomics.com/images/2021/03/gatk_logo-20210327230430245.jpg)
 
 当我们本地跑GATK4的时候你会发现，它竟然没有多线程的功能，这和GATK3很不同，在3中我们可以用-nt或者-nct设定多线程，但是4却没有类似的参数，这是为啥呢？
 
@@ -69,7 +70,7 @@ PCR duplicates可以通过PCR-free来避免。并且PCR本身还会带来一些�
 
 ## 4.Ti/Tv比率能说明变异的什么特征吗？
 
-![](http://image.fungenomics.com/ti_tv.png)
+![](https://static.fungenomics.com/images/2021/03/ti_tv-20210327230358185-20210327230430326.png)
 
 **Ti/Tv（转换和颠换的比例）的值，实际上是物种演化的过程中在基因组上留下来的序列选择标记，是对自然选择的一种反应，这儿值在物种中具有一定的稳定性。**因此，Ti/Tv的值常常会被我们作为一个评判变异的质控结果好坏的一个较为宏观的指标。
 
@@ -81,7 +82,7 @@ PCR duplicates可以通过PCR-free来避免。并且PCR本身还会带来一些�
 
 ## 5.最新人类参考序列的两个版本NCBI（GRCh38）和UCSC（hg38）有什么差异？
 
-![](http://image.fungenomics.com/hg38_vs_hg19.png)
+![](https://static.fungenomics.com/images/2021/03/hg38_vs_hg19-20210327230430417.png)
 
 ﻿**可能大部分人都认为这两份参考序列是一致的，但实际上它们存在着细微的差别。**主要有以下四点：
 
@@ -109,7 +110,8 @@ PCR duplicates可以通过PCR-free来避免。并且PCR本身还会带来一些�
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327230358511-20210327230430592.png)
+
 ***
 
 这是知识星球：**解螺旋技术交流圈，**是一个我与读者朋友们的私人朋友圈，欢迎你的加入。我有9年前沿而完整的生物信息学、NGS领域的工作经历，在该领域发有多篇Nature级别的科学文章。
@@ -119,3 +121,4 @@ PCR duplicates可以通过PCR-free来避免。并且PCR本身还会带来一些�
 在这里你可以结识到全国优秀的基因组学和生物信息学专家，同时可以分享你的经验、见解和思考，有问题也可以向我提问和圈里的星友们提问。
 
 知识星球邀请链接：[「解螺旋技术交流圈」](https://wx.zsxq.com/mweb/views/joingroup/join_group.html?group_id=518881585444&secret=vcdvs4rdpst7stq4wcvqmlwvogc0ssbn&user_id=28821152428221)
+

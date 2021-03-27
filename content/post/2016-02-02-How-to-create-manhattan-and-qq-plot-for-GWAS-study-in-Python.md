@@ -1,7 +1,7 @@
 ---
 title: '如何使用Python绘制GWAS分析中的曼哈顿图和QQ图'
 date: 2016-02-02 01:00:00+0800
-image: http://image.fungenomics.com/fg.post.2015-02-08.cover.jpg
+image: https://static.fungenomics.com/images/2021/03/fg.post.2015-02-08.cover.jpg
 description: 
 categories:
     - 数据可视化
@@ -10,7 +10,11 @@ tags:
     - Python
     - manhattan plot
     - Q-Q plot
+
+
 ---
+
+
 
 【前言】这篇文章使用[geneview](https://github.com/ShujiaHuang/geneview)完成这两类图的作法，它是一个Python高级库，建立在matplotlib的基础之上，专门用于基因组数据的可视化，目的是为了使创建**高大上（精致）**的基因组数据图表变得简单。目前该发布的Python包中已经内置多个优美的调色板和风格（默认情况下就能创建赏心悦目的图形），同时已经集成了曼哈顿图和Q-Q图的绘制函数。作为该Python包的主要开发者，只是如此是远远不够的，在未来的日子里，我希望它能在功能不断完善的同时也变得更加易用。
 
@@ -35,6 +39,7 @@ pip install geneview
 ```bash
 pip install git+git://github.com/ShujiaHuang/geneview.git#egg=geneview
 ```
+
 第三种办法就是直接下载源码，然后自行编译，虽然不推荐这种做法（因为还有依赖包必须自行下载安装，过程会比较麻烦低效），但对于某些不能连接外网的集群也只能如此，这三种方式都是可行的。
 
 
@@ -67,7 +72,6 @@ chrID,rsID,position,pvalue
 下面我们先从绘制曼哈顿图开始。我们先将需要的数据读取到一个列表中，可以这样做：
 
 ```python
-
 import csv
 
 data = []
@@ -133,6 +137,7 @@ Q-Q图
 -----
 
 qq图只需用到上例中的pvalue那一列：
+
 ```python
 import csv
 import matplotlib.pyplot as plt
@@ -178,6 +183,7 @@ plt.show()
 ```
 
 （2）QQ图：
+
 ```python
 import csv
 import matplotlib.pyplot as plt
@@ -197,4 +203,4 @@ plt.show()
 
 欢迎关注我的个人公众号：**helixminer（碱基矿工）**
 
-![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327224335971-20210327224418858.png)
