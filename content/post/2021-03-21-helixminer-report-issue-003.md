@@ -107,6 +107,11 @@ tags:
 这个仓库是原始英文版的中文翻译，名字比较粗暴，它汇集了 Python 语言的各种怪异的语法点，以及鲜为人知的功能特性，并尝试讨论这些语法现象背后真正的原理。
 
 
+## 订阅
+
+《碱基周报》每周首发于个人公众号：**helixminer（碱基矿工）**
+
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
 
 ### *References*
 
@@ -117,9 +122,4 @@ tags:
 > [^5]: https://mp.weixin.qq.com/s/5FM0SVuIkO28v48M1b3rGA
 >[^6]: https://github.com/leisurelicht/wtfpython-cn
 
-## 订阅
-
-《碱基周报》每周首发于个人公众号：**helixminer（碱基矿工）**
-
-<img src="https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png" alt="image-20210228112711833" style="zoom:60%;" />
 

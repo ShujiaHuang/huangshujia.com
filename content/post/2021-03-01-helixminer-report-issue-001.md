@@ -101,19 +101,13 @@ https://mp.weixin.qq.com/s/BMqcUOcoI3Bj67oYO9j5EQ
 
 我比较意外的是一直以来很多人其实用的是R的一个包来画曼哈顿图和QQ图，竟然没有 Python 的或者质量很差——尽管 Python 其实可以做得更好，所以上个月我完成一系列的GWAS分析之后就决心重新实现了一个，效果还是很比较满意，这个包的Github地址和教程：
 
-GitHub链接：https://github.com/ShujiaHuang/qmplot
+GitHub链接: <https://github.com/ShujiaHuang/qmplot>
 
-教程 Notebook：https://nbviewer.jupyter.org/url/github.com/ShujiaHuang/qmplot/blob/main/docs/tutorial.ipynb
-
+教程 Notebook: <https://nbviewer.jupyter.org/url/github.com/ShujiaHuang/qmplot/blob/main/docs/tutorial.ipynb>
 
 
 -----
 
 每周首发于个人公众号：**helixminer（碱基矿工）**
 
-<img src="https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png" alt="image-20210228112711833" style="zoom:60%;" />
-
-
-
-
-
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)

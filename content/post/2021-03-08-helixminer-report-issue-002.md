@@ -101,8 +101,6 @@ tags:
 > **灰质**是中枢神经系统的重要组成部分，由大量的神经元胞体及其树突聚集在一起形成，灰质和人的认知能力有关；另一个重要组成部分为**白质**，它由各种不同功能的神经纤维聚集而成。
 >
 > ![image-20210304183241192](https://static.fungenomics.com/images/2021/03/image-20210304183241192.png)
->
-> 
 
 
 
@@ -146,11 +144,7 @@ tags:
 
 不过，刚出生几天的小海鞘也是有脑子的，只是后来发生了**逆行变态**，在一天之内原本的背神经管、眼睛和大部分尾巴都会被吸收，脑子也基本消失了，最后就保留了一个连接嘴巴和心脏、主要功能是控制进食的神经节，成了一个**“无头怪”**。
 
-
-
 ![底栖海鞘 *Phallusia nigra* 从幼体变为成虫的过程（图片来源：CEBIMar/USP）](https://static.fungenomics.com/images/2021/03/phallusia-nigra-growth.gif)
-
-
 
 这真是一个有趣的事情，不过研究发现海鞘的无脑化可能是后期演化新出现的，而且不是所有海鞘最终都无脑，比如“不愿意长大”的尾海鞘就有脑子。
 
@@ -159,7 +153,6 @@ tags:
 
 
 ![海菠萝（*Halocynthia roretzi*）刺身。（图片来源：wikipedia）](https://static.fungenomics.com/images/2021/03/image-20210304224010743.png)
-
 
 
 ### 6、“吃掉你，我就继承你的记忆”，记忆转移实验是造假还是奇迹？[^6]
@@ -195,6 +188,11 @@ tags:
 这62个基因位点还与人体脂肪细胞内基因表达有变化的位点高度重合，所以它们很可能是通过**影响脂肪细胞的生物学行为发挥作用**，比如影响了能量代谢和氧化还原、胰岛素-血糖信号通路、白色脂肪棕色化和慢性炎症等。
 
 
+## 订阅
+
+《碱基周报》每周首发于个人公众号：**helixminer（碱基矿工）**
+
+![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
 
 ## *References*
 
@@ -211,12 +209,4 @@ tags:
 [^6]:https://mp.weixin.qq.com/s/ph4R2MMz7EMMIPl_lNF8YA
 
 [^7]:https://mp.weixin.qq.com/s/23uUN93Emh52qfoyk7qkLg
-
-
-
-## 订阅
-
-《碱基周报》每周首发于个人公众号：**helixminer（碱基矿工）**
-
-<img src="https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png" alt="image-20210228112711833" style="zoom:60%;" />
 
