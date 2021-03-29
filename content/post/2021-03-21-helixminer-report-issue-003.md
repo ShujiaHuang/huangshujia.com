@@ -10,8 +10,6 @@ tags:
     - 古DNA
 ---
 
-记录每周值得分享的生命科学和生物信息学进展内容，周日发布。
-
 ## 封面图
 
 ![图源: www.sciencemag.org](https://static.fungenomics.com/images/2021/03/neanderthal_1280p_0-20210316201137723.jpg)

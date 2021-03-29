@@ -9,13 +9,9 @@ tags:
     - 肝脏
 ---
 
-记录每周值得分享的生命科学和生物信息学进展内容，周日发布。
-
 ## 本周话题：肝脏，一个没有痛感神经的器官
 
 ![肝脏切片标记图片](https://static.fungenomics.com/images/2021/03/sciencepressimageforkatiecopy.png)
-
-
 
 人，没有肝脏就不能生存。
 

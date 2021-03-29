@@ -10,8 +10,6 @@ tags:
     - 国自然
 ---
 
-记录每周值得分享的生命科学和生物信息学进展内容，周日发布。
-
 ## 封面图
 
 ![封面图源：pexels.com](https://static.fungenomics.com/images/2021/03/pexels-photo-146080.jpeg)
