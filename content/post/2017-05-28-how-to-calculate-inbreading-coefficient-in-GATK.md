@@ -1,6 +1,6 @@
 ---
 title: GATK中如何计算Inbreeding coefficient（近交系数）
-date: 2017-05-28 1:00:00+080
+date: 2017-05-28 01:00:00+0800
 image: https://static.fungenomics.com/images/2021/03/ic_cover.jpg
 categories:
     - 生物信息
