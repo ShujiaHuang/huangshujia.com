@@ -1,3 +1,9 @@
 ## 个人网站
 
-域名和访问连接为：<huangshujia.com> 或者 <www.huangshujia.com>
+访问链接: [huangshujia.com](huangshujia.com) 或 [www.huangshujia.com](www.huangshujia.com).
+
+```bash
+git clone ----recursive git@github.com:ShujiaHuang/huangshujia.com
+```
+
+
