@@ -2,7 +2,7 @@ baseurl: https://huangshujia.com/
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 8
-title: "Shujia Huang | 黄树嘉"
+title: "Shujia Huang"
 
 # Change it to My Disqus shortname before using
 disqusShortname: huangshujia
@@ -39,7 +39,7 @@ params:
         subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         avatar:
             local: true
-            src: img/avatar.png
+            src: static/img/avatar.png
 
     article:
         math: false
