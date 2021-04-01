@@ -39,7 +39,7 @@ params:
         subtitle: A bioinformatician, human genome researcher and programmer.
         avatar:
             local: true
-            src: img/logo.png
+            src: img/my_avatar.png
 
     article:
         math: false
@@ -110,6 +110,12 @@ menu:
           url: /
           weight: -100
           pre: home
+        - name: "Categories"
+          url: "/categories/"
+          weight: 2
+        - name: "Tags"
+          url: "/tags/"
+          weight: 3
 
 related:
     includeNewer: true
