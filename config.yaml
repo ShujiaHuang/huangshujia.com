@@ -24,7 +24,7 @@ params:
         - post
     featuredImageField: image
     rssFullContent: true
-    favicon: assets/favicon.ico
+    favicon: img/favicon.ico
 
     footer:
         since: 2020
@@ -36,10 +36,10 @@ params:
 
     sidebar:
         emoji: 🍥
-        subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        subtitle: A bioinformatician, human genome researcher and programmer.
         avatar:
             local: true
-            src: static/img/avatar.png
+            src: img/avatar.png
 
     article:
         math: false
