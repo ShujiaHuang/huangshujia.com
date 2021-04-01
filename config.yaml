@@ -39,7 +39,7 @@ params:
         subtitle: A bioinformatician, human genome researcher and programmer.
         avatar:
             local: true
-            src: img/avatar.png
+            src: img/logo.png
 
     article:
         math: false
