@@ -6,4 +6,9 @@
 git clone ----recursive git@github.com:ShujiaHuang/huangshujia.com
 ```
 
+## 启动 hugo 本地运行，测试
+
+```bash
+hugo server --minify --buildDrafts -w
+```
 
