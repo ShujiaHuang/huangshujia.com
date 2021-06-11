@@ -5,7 +5,7 @@ paginate: 8
 title: "Shujia Huang"
 
 # Change it to My Disqus shortname before using
-#disqusShortname: huangshujia
+disqusShortname: huangshujia
 
 # GA Tracking ID
 googleAnalytics:
