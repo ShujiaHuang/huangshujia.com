@@ -3,6 +3,7 @@ title: "测序量估计"
 date: "2013-07-11 01:00:00+0800"
 image: https://static.fungenomics.com/images/2021/03/image-asset-20210327222402503.png
 description: "考虑这样一个问题，如果要保证基因组上95%的区域其覆盖深度在30x以上的话，那么最低的平均测序深度应该是多少?"
+math: true
 categories:
     - 生物信息
     - 统计学
