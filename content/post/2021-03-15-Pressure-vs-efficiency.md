@@ -1,7 +1,7 @@
 ---
 title: "压力 vs 效率"
 description: "今天不得不感叹一下：Deadline 真的是第一生产力。"
-date: "2021-03-28 01:00:00+0800"
+date: "2021-03-21 01:00:00+0800"
 image: https://static.fungenomics.com/images/2021/06/image-20210620214035402.png
 categories:
     - 
