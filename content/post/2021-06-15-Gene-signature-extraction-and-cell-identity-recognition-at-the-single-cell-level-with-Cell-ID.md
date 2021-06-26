@@ -109,5 +109,5 @@ MCA 本质上也是一个针对多个分类变量的降维方法，就如同针�
 
 关注我的个人公众号：**helixminer（碱基矿工）**
 
-<img src="https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png" alt="image-20210228112711833" style="zoom:60%;" />
+![helixminer（碱基矿工）](https://static.fungenomics.com/images/2021/03/helixminer-mid-red.png)
 
