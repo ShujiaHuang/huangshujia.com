@@ -10,14 +10,9 @@ tags:
     - Python
     - manhattan plot
     - Q-Q plot
-
-
 ---
 
-
-
 【前言】这篇文章使用[geneview](https://github.com/ShujiaHuang/geneview)完成这两类图的作法，它是一个Python高级库，建立在matplotlib的基础之上，专门用于基因组数据的可视化，目的是为了使创建**高大上（精致）**的基因组数据图表变得简单。目前该发布的Python包中已经内置多个优美的调色板和风格（默认情况下就能创建赏心悦目的图形），同时已经集成了曼哈顿图和Q-Q图的绘制函数。作为该Python包的主要开发者，只是如此是远远不够的，在未来的日子里，我希望它能在功能不断完善的同时也变得更加易用。
-
 
 曼哈顿图和QQ图是两个在全基因组关联（GWAS）分析里面最常出现的图形，基本上已经是GWAS的标配，几乎在每篇GWAS的文章都会见到，它们的作用和所要传达出来的信息我也在[上一篇关于GWAS的博文]()中做了些说明，在这里我们就只集中在如何用Python和geneview将其有效地展现出来。
 
@@ -34,13 +29,7 @@ tags:
 pip install geneview
 ```
 
-或者，也可以直接从github上安装正在开发的版本：
-
-```bash
-pip install git+git://github.com/ShujiaHuang/geneview.git#egg=geneview
-```
-
-第三种办法就是直接下载源码，然后自行编译，虽然不推荐这种做法（因为还有依赖包必须自行下载安装，过程会比较麻烦低效），但对于某些不能连接外网的集群也只能如此，这三种方式都是可行的。
+另一种办法就是直接下载源码，然后自行编译，虽然不推荐这种做法（因为还有依赖包必须自行下载安装，过程会比较麻烦低效），但对于某些不能连接外网的集群也只能如此。
 
 
 曼哈顿图
@@ -89,7 +78,7 @@ with open("GOYA.csv") as f:
 ```python
 import matplotlib.pyplot as plt
 
-from geneview.gwas import manhattanplot
+from geneview import manhattanplot
 
 ax = manhattanplot(data, xlabel="Chromosome", ylabel="-Log10(P-value)")  # 这就是Manhattan plot的函数
 plt.show()
@@ -100,7 +89,7 @@ plt.show()
 
 只需这样的一句代码就能创建一个漂亮的曼哈顿图，有必要再次指出的是，geneview是以matplotlib为基础开发出来的，所创建的图形对象实际上仍属于matplotlib，geneview内部自定义了很多图形风格，同时封装了大量只属于基因组数据的图表类型，但图形的输出格式以及界面显示都仍和matplotlib一样，因此在这里我们使用matplotlib.pyplot的show()函数(上例中：plt.show())将所绘制出来的曼哈顿图显示出来。如果要将图形保存下来，则只需执行`plt.savefig("man.png")`，这样就会在该目录下生成一个名为『man.png』png格式的曼哈顿图，若是要存为pdf格式，则只需将所要保存的文件名后缀改成『.pdf』（plt.savefig("man.pdf")）就可以了。下面这些格式：emf, eps, pdf, png, jpg, ps, raw, rgba, svg, svgz等都是支持的，至于最新的还有多少种，还请参照matplotlib文档中说明。
 
-此外，geneview中的每个画图函数都有着足够的灵活性，我们也可以根据自己的需要做一些调整，比如：
+此外，geneview中的每个画图函数都有着足够的灵活性，我们也可以根据自己的需要做一些调整，包括颜色组合、限定x轴上的刻度显示和散点大小的调节，比如：
 
 ```python
 xtick = ['1', '2','3','4','5','6','7','8','9','10','11','12','13','14','16','18', '20','22']
@@ -116,32 +105,18 @@ manhattanplot(data,
 
 ![manhantan2](http://7u2had.com1.z0.glb.clouddn.com/post.man-1.png)
 
-实现新的颜色组合、限定x轴上的刻度显示和散点大小的调节。甚至还可以将散点改为线：
-
-```python
-manhattanplot(data，
-              xlabel="Chromosome", # 设置x轴名字
-              ylabel="-Log10(P-value)", # 设置y轴名字
-              xtick_label_set = set(xtick), # 限定横坐标轴上的刻度显示
-              alpha=0.5, # 调整散点透明度
-              color="#f28b1e,#9a0dea,#ea0dcc,#63b8ff", # 设置新的颜色组合
-              kind="line"
-              ) 
-```
-
-![manhantan3](http://7u2had.com1.z0.glb.clouddn.com/post.man-2.png)
 
 其它方面的调整请查看geneview文档中的相关说明。
 
-Q-Q图
------
+Q-Q 图
+---------
 
-qq图只需用到上例中的pvalue那一列：
+QQ图只需用到上例中的 pvalue 那一列：
 
 ```python
 import csv
 import matplotlib.pyplot as plt
-from geneview.gwas import qqplot
+from geneview import qqplot
 
 pvalue=[]
 with open("GOYA.csv") as f:
@@ -170,7 +145,7 @@ import sys
 import csv
 import matplotlib.pyplot as plt
 
-from geneview.gwas import manhattanplot
+from geneview import manhattanplot
 
 with open("data/GOYA.csv") as f:
     f_csv = csv.reader(f)
@@ -188,7 +163,7 @@ plt.show()
 import csv
 import matplotlib.pyplot as plt
 
-from geneview.gwas import qqplot
+from geneview import qqplot
 
 pvalue=[]
 with open("data/GOYA.csv") as f:
