@@ -5,6 +5,7 @@ date: "2021-06-26 01:00:00+0800"
 image: https://static.fungenomics.com/images/2021/06/pexels-photo-3225618-20210621225816188.jpeg
 categories:
     - 单细胞组学
+    - 文献阅读
 ---
 
 我想分享一篇今年四月份发表在 《Nature biotechnology》 上的文章，题目是 “Gene signature extraction and cell identity recognition at the single-cell level with Cell-ID”，翻译出来是 “基于Cell ID的单细胞水平基因指纹特征提取和细胞身份识别方法”。
