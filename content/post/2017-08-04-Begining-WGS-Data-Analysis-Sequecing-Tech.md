@@ -177,4 +177,3 @@ Oxford Nanopore 的MinION是另一个比较受关注的第三代测序仪，俗�
 
 ![helixminer-QRCode](https://static.fungenomics.com/images/2021/03/helixminer-mid-red-20210327224916670-20210327225000145.png)
 
-

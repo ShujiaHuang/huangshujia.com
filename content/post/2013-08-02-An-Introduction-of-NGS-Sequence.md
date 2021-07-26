@@ -10,10 +10,9 @@ tags:
     - NGS
     - 测序技术
 
-
 ---
 
-## 这篇文章写于2013年，首发在cnblog上，目前已经比较旧了。我重新在WGS系列中对其进行重写，移步到公众号
+## 这篇文章写于2013年，首发在cnblog上，目前已经比较旧了。我重新在WGS系列中对其进行重写，[这里跳转](https://huangshujia.com/2017/08/2017-08-04-begining-wgs-data-analysis-sequecing-tech/)
 
 ***
 
@@ -443,6 +442,8 @@ tags:
 <p>5. Niedringhaus, T. P., Milanova, D., Kerby, M. B., Snyder, M. P. &amp; Barron, A. E. Landscape of Next-Generation Sequencing Technologies. 4327&ndash;4341 (2011).</p>
 <p>6. Rothberg, J. M. <em>et al.</em> An integrated semiconductor device enabling non-optical genome sequencing. <em>Nature</em> <strong>475</strong>, 348&ndash;52 (2011).&nbsp;</p>
 </blockquote>
+
+
 
 
 --------------
