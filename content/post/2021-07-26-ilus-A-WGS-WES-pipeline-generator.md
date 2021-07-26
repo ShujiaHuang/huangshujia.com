@@ -3,7 +3,7 @@ title: "ilus: 一个轻量的 WGS/WES 分析流程生成器，可能也是目前
 description: "这是一个轻量的、可拓展的、易用的半自动化的全基因组和全外显子分析流程生成器。"
 date: "2021-07-26 01:00:00+0800"
 image: https://static.fungenomics.com/images/2021/07/coding.cover.jpeg
-categories
+categories:
     - 生物信息
     - 基因组学
 tags: 
