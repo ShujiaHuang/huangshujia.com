@@ -1,6 +1,6 @@
 ---
-title: "ilus: 一个轻量的 WGS/WES 分析流程生成器，可能也是目前最佳甚至唯一的全基因组和全外显子分析流程生成器"
-description: "这是一个轻量的、可拓展的、易用的半自动化的全基因组和全外显子分析流程生成器。"
+title: "ilus: 一个轻量级 WGS/WES 分析流程生成器，可能也是目前最佳甚至唯一的全基因组和全外显子分析流程生成器"
+description: "这是一个轻量、可拓展、半自动化的全基因组和全外显子分析流程生成器。"
 date: "2021-07-26 01:00:00+0800"
 image: https://static.fungenomics.com/images/2021/07/pexels-photo-262577.jpeg
 categories:
@@ -10,14 +10,7 @@ tags:
     - WGS
     - WES
     - 流程
-
 ---
-
-
-
-![Gardens by the Bay, Singapore](https://static.fungenomics.com/images/2021/07/pexels-photo-262577.jpeg)
-
-(图源：pexels.com) 字数：5,565  
 
 不知觉间，距离我写下第一篇关于 WGS 数据分析系列的文章已经过去了三年多（[WGS 系列文章](https://mp.weixin.qq.com/mp/homepage?__biz=MzAxOTUxOTM0Nw==&hid=1&sn=d945cf61bd86e85724e146df42af5bcc&scene=1&devicetype=android-29&version=28000753&lang=zh_CN&nettype=WIFI&ascene=59&session_us=gh_2942f3f5dbfe&wx_header=1)），时间真的快啊。
 
@@ -27,13 +20,9 @@ tags:
 
 这个工具我将其命名为 **ilus** (/i:ləs/)，这是我看过的一部美剧——《无垠的太空》中通过星环抵达的第一个系外类地行星的名字。它是一个全面的、轻量的、可拓展且易用的**半自动化**全基因组（Whole genome sequencing, WGS）和全外显子（Whole exom sequencing，WES）分析**流程生成器**，是以前我 [这篇文章](https://mp.weixin.qq.com/s/Sa019WuSg8fRQgkWAIG4pQ) 所提供代码的高级版本。
 
-
-
 ## 简介
 
-**ilus** 的用途就是生成完整的 WGS/WES 分析流程，但 **ilus**
-不执行流程的具体步骤。你需要自己手动投递任务，不过执行过程不再依赖
-**ilus**，这也是为何我称之为半自动化的原因（这其实是一个优点，下文我会说到）。虽然如此，**但 ilus 会帮你将最重要的流程和分析步骤生成出来，你只要按步骤投递就可以了**。
+**ilus** 的用途就是生成完整的 WGS/WES 分析流程，但**ilus**不执行流程的具体步骤。你需要自己手动投递任务，不过执行过程不再依赖**ilus**，这也是为何我称之为半自动化的原因（这其实是一个优点，下文我会说到）。虽然如此，**但 ilus 会帮你将最重要的流程和分析步骤生成出来，你只要按步骤投递就可以了**。
 
 目前 **ilus** 含有三个功能模块，分别是：
 
@@ -70,16 +59,13 @@ tags:
 
 ## 如何安装
 
-**ilus** 是基于 Python 编写的，同时支持 Python3.7+ 和
-Python2.7+，稳定版本的代码发布至 PyPI。因此要使用 **ilus**, 直接通过
-`pip` 这个 Python 包管理工具进行安装即可，非常方便：
+**ilus** 是基于 Python 编写的，同时支持 Python3.7+ 和 Python2.7+，稳定版本的代码发布至 PyPI。因此要使用 **ilus**, 直接通过 `pip` 这个 Python 包管理工具进行安装即可，非常方便：
 
 ```bash
 $ pip install ilus
 ```
 
-该命令除了主程序 `ilus` 之外，还会自动将 **ilus** 所依赖的其它 Python
-包自动装上。安装完成之后，在命令行中执行 `ilus`，如果能看到类似如下的内容，那么就说明安装成功了。
+该命令除了主程序 `ilus` 之外，还会自动将 **ilus** 所依赖的其它 Python 包自动装上。安装完成之后，在命令行中执行 `ilus`，如果能看到类似如下的内容，那么就说明安装成功了。
 
 ```bash
 $ ilus
@@ -89,11 +75,9 @@ ilus: error: too few arguments
 
 > ilus 的源代码托管在 github 中：https://github.com/ShujiaHuang/ilus
 
-
 ## 快速开始
 
-执行 `ilus --help` 可以看到 `WGS`, `genotype-joint-calling` 和
-`VQSR` 这三个功能模块。
+执行 `ilus --help` 可以看到 `WGS`, `genotype-joint-calling` 和 `VQSR` 这三个功能模块。
 
 ```bash
 $ ilus --help
@@ -148,7 +132,7 @@ optional arguments:
 
 最重要的是 `-C` 和 `-L` 这两个参数。 `-C` 参数是 **ilus** 的配置文件，如果没有这个文件 **ilus** 就无法正确生成分析流程了，因此它十分重要；`-L` 是输入文件，**这个文件的格式有固定要求**，一共 5 列，每一列都是流程所必须的信息。
 
-下面，我分别对这两个文件的格式展开说明：
+下面，我分别对这两个文件的格式展开说明。
 
 首先是 `-C` 配置文件，你需要在文件中填写好分析流程所需的所有程序路径、`GATK bundle` 文件路径、参考基因组 fasta 文件的路径以及各个关键步骤所对应的参数。
 
@@ -166,9 +150,7 @@ optional arguments:
 `-- human_GRCh38.fa.sa
 ```
 
-`human_GRCh38.fa` 是 `resources.reference`，后面 6 份以 `human_GRCh38.fa` 为前缀的是 `bwa mem` 所需的比对索引文件，`human_GRCh38.dict` 也是一份必须的文件。
-
-配置文件要使用 [Yaml 语法](https://zh.wikipedia.org/wiki/YAML) 来编写，这里我提供一份 [配置文件的模板](https://github.com/ShujiaHuang/ilus/blob/master/tests/ilus_sys.yaml)，大家可以直接参考：
+`human_GRCh38.fa` 是 `resources.reference`，后面 6 份以 `human_GRCh38.fa` 为前缀的是 `bwa mem` 所需的比对索引文件，`human_GRCh38.dict` 也是一份必须的文件。配置文件要使用 [Yaml 语法](https://zh.wikipedia.org/wiki/YAML) 来编写，这里我提供一份 [配置文件的模板](https://github.com/ShujiaHuang/ilus/blob/master/tests/ilus_sys.yaml)，大家可以直接参考：
 
 ```yaml
 aligner:
@@ -276,8 +258,7 @@ resources:
 
 这是一个非常灵活有用的参数，因为  `variant_calling_interval` 可以任意指定的，除了可以按照我例子给出的赋值方式之外，你还可以将区间 **文件的路径** 赋给这个参数。**我们知道 WGS 和 WES 有很多步骤是完全相同的，只在变异检测的区间上存在差别——WES数据没有必要也不能** 在全染色体上做变异检测，它只在外显子捕获区域里进行。
 
-这个时候你只需要将外显子捕获区域的文件——注意是文件，这个文件的内容可以是
-.interval_list 格式、.list 格式、.intervals 格式或者 .bed 格式。其中，`.list` 格式和 `.intervals`文件格式**必须**如下所示：
+这个时候你只需要将外显子捕获区域的文件——注意是文件，这个文件的内容可以是 `.interval_list` 格式、`.list` 格式、`.intervals` 格式或者 `.bed` 格式。其中，`.list` 格式和 `.intervals`文件格式**必须**如下所示：
 
 ```bash
 chr1:63697-63697
@@ -292,14 +273,13 @@ chr1:700596-700596
 chr1:725086-725086
 ```
 
-而 `.interval_list` 格式和 `.bed` 格式参照 [GATK的说明](<https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists>)，你不需要手动拆分成一个个的区间，只需将这个文件的路径赋给这个参数就可以了，**这时流程就成了 WES 分析流程**。这也是为何 ilus 同时是一个WGS 和 WES 分析流程生成器的原因。
+而 `.interval_list` 格式和 `.bed` 格式参照 [GATK的说明](https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists)，你不需要手动拆分成一个个的区间，只需将这个文件的路径赋给这个参数就可以了，**这时流程就成了 WES 分析流程**。这也是为何 ilus 同时是一个WGS 和 WES 分析流程生成器的原因。
 
 另外，**ilus** 必需的公用数据集是：`gatk bundle` 和基因组参考序列（fasta 文件）。
 
 > 【注意】如果你项目的样本量少于 10 那么 GATK 将不计算 `InbreedingCoeff`的值，此时配置文件中 `vqsr_options` 不需要设置 `-an InbreedingCoeff`，可以将其去掉。
 
-接下来是由 `-L` 参数指定的输入文件，文件里包含了 `WGS/WES`
-分析流程所必需的一切信息。**这是一个需要你自己来准备的文件**，文件各列的格式信息如下：
+接下来是由 `-L` 参数指定的输入文件，文件里包含了 `WGS/WES` 分析流程所必需的一切信息。**这是一个需要你自己来准备的文件**，文件各列的格式信息如下：
 
 - [1] SAMPLE，样本名；
 - [2] RGID，Read Group，使用 `bwa mem` 时通过 -R 参数指定的 `read group`；
@@ -307,13 +287,12 @@ chr1:725086-725086
 - [4] FASTQ2，Fastq2 文件路径，如果是Single End测序，没有fastq2的话，该列用空格代替；
 - [5] LANE，fastq 的 lane 编号。
 
+
 > 这五个信息中 `RGID` 要求严格，最容易出错。`RGID` 一定要设置正确（正确的编写方式参考下面的例子或者[这篇文章](https://mp.weixin.qq.com/s/awdjoXRYobrQAbXmAp3C0g)），否则你流程会出错。
 
 另外，假如某些样本有多个 `lane` 的测序数据，或者同一个 `lane` 的数据被拆分成了很多个子文件，这个时候也不需要手动合并这些 `fastq` 数据，只需要依照 `-L` 的格式要求编写在输入文件里即可。对于这些同属一个样本的数据，**ilus** 都会根据样本 ID 在生成的流程中自动帮你合并。
 
-下面我给出一个 `-L` 输入文件的例子，其中样本 `HG002`, `HG003`和 `HG004` 的数据就有分拆的情况：
-
-> 哪怕碎成一万份也没问题。
+下面我给出一个 `-L` 输入文件的例子，其中样本 `HG002`, `HG003`和 `HG004` 的数据就有分拆的情况（哪怕碎成一万份也没问题）：
 
 ```bash
 #SAMPLE RGID    FASTQ1  FASTQ2  LANE
@@ -387,8 +366,7 @@ $ ilus WGS -c -n my_wgs_project -C ilus_sys.yaml -L input.list -O output/
 
 投递任务运行流程时，按顺序从 `step1` 依次执行到 `step6` 即可。`loginfo/` 文件夹下记录了各个样本所有步骤的运行状态，你可以通过检查各个任务的 `.o.log.list` 日志文件，获得每个样本是否都有成功结束的标记。
 
-如果成功了，你将在日志文件的末尾看到一句类似于 `[xxxx] xxxx done`
-的标记。用我在 **ilus** 中提供的程序 [`check_jobs_status.py`](https://github.com/ShujiaHuang/ilus/blob/master/scripts/check_jobs_status.py)，你就可以很方便地知道哪些已经顺利完成，哪些还没有。这个脚本会帮你将那些未完成的任务全部输出，方便检查问题或重新执行这部分未完成的任务。
+如果成功了，你将在日志文件的末尾看到一句类似于 `[xxxx] xxxx done` 的标记。用我在 **ilus** 中提供的程序 [`check_jobs_status.py`](https://github.com/ShujiaHuang/ilus/blob/master/scripts/check_jobs_status.py)，你就可以很方便地知道哪些已经顺利完成，哪些还没有。这个脚本会帮你将那些未完成的任务全部输出，方便检查问题或重新执行这部分未完成的任务。
 
 `check_jobs_status` 的用法如下：
 
@@ -396,16 +374,11 @@ $ ilus WGS -c -n my_wgs_project -C ilus_sys.yaml -L input.list -O output/
 $ python check_jobs_status.py loginfo/01.alignment.o.log.list > bwa.unfinish.list
 ```
 
-如果这个 `bwa.unfinish.list` 文件是空的，并输出了
-`** All Jobs done **`，那么就代表你 `step1` 的所有任务都成功结束了，以此类推。
-
-如果有未完成的，那么你要提取出来，重新投递。
+如果这个 `bwa.unfinish.list` 文件是空的，并输出了`** All Jobs done **`，那么就代表你 `step1` 的所有任务都成功结束了，以此类推。如果有未完成的，那么你要提取出来，重新投递。
 
 **例子2：只生成 WGS 流程中的某个/某些步骤**
 
-有时，我们并不打算（或者没有必要）从头到尾完整地将 WGS
-流程执行下去，比如我们只想完成从 `fastq` 比对到生成 `gvcf`
-结束，暂时不想执行 `genotype` 和 `VQSR`——这情况在大型基因组项目中很普遍，这时该怎么办呢？**ilus** 的 `-P` 参数就可以实现这个目的：
+有时，我们并不打算（或者没有必要）从头到尾完整地将 WGS 流程执行下去，比如我们只想完成从 `fastq` 比对到生成 `gvcf` 结束，暂时不想执行 `genotype` 和 `VQSR`——这情况在大型基因组项目中很普遍，这时该怎么办呢？**ilus** 的 `-P` 参数就可以实现这个目的：
 
 ```bash
 $ ilus WGS -c -n my_wgs_project -C ilus_sys.yaml -L input.list -P align,markdup,BQSR,gvcf -O output/
@@ -422,6 +395,7 @@ $ ilus WGS -c -n my_wgs_project -C ilus_sys.yaml -L input.list -P BQSR -O ./outp
 不过，要特别注意，**ilus** 为了节省项目对存储空间的消耗，只会为每一个样本保留 `BQSR` 之后的总 BAM/CRAM 文件。因此，如果你要重新跑 BQSR 那就需要先确保 `BQSR` 的前一步（即，`markdup`）的 BAM 文件还没有被被删除。如果你在项目中一直使用的都是 **ilus** 那么是不用担心这个问题的，因为 **ilus** 执行任务时具有 **原子属性**，也就是说只有当步骤中所有过程都成功结束了才会将那些完全不需要的文件删除掉。所以，如果 ilus 的 `BQSR` 没有正常结束，那么前一步 `markdup` 的 BAM 文件是会被完整保留住的。
 
 > 目前 `-P` 参数能指定的分析模块必须属于「align,markdup,BQSR,gvcf,genotype,VQSR」中的一个或多个，并用英文逗号隔开，中间不可以有空格。
+
 
 ### genotype-joint-calling
 
@@ -479,9 +453,7 @@ chrM    /path/sample2.chrM.g.vcf.gz
 
 ![vqsr_method](https://static.fungenomics.com/images/2021/07/vqsr_method.png)
 
-我们如果已经有了最终的变异检测（VCF格式）结果，现在只想用 `GATK VQSR`
-对这个变异数据做质控，那么就可以使用这个模块了，用法和
-`genotype-joint-calling` 大同小异，如下：
+我们如果已经有了最终的变异检测（VCF格式）结果，现在只想用 `GATK VQSR` 对这个变异数据做质控，那么就可以使用这个模块了，用法和 `genotype-joint-calling` 大同小异，如下：
 
 ```bash
 $ ilus VQSR --help
@@ -508,8 +480,7 @@ optional arguments:
   -f, --force           Force overwrite existing shell scripts and folders.
 ```
 
-跟 `genotype-joint-calling` 相比不同的是，`ilus VQSR` 的输入文件是
-VCF 文件列表，并且 **每行只有一个 VCF 文件路径**，例子如下：
+跟 `genotype-joint-calling` 相比不同的是，`ilus VQSR` 的输入文件是 VCF 文件列表，并且 **每行只有一个 VCF 文件路径**，例子如下：
 
 ```bash
 /path/chr1.vcf.gz
@@ -527,6 +498,7 @@ $ ilus VQSR -C ilus_sys.yaml -L vcf.list -O genotype --as_pipe_shell_order
 ## 其它
 
 关于文中我提到的 `yhbatch_slurm_jobs.py` 和 `check_jobs_status.py` 都在 ilus github 代码仓库的 `scripts` 目录里:
+
 > * https://github.com/ShujiaHuang/ilus/blob/master/scripts/yhbatch_slurm_jobs.py
 > * https://github.com/ShujiaHuang/ilus/blob/master/scripts/check_jobs_status.py
 
